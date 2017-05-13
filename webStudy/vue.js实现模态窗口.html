@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <style>
+        .show{
+            display:none;
+        }
+        .modal-mask {
+            position: fixed;
+            z-index: 9998;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, .5);
+            display: table;
+            transition: opacity .3s ease;
+        }
+
+        .modal-wrapper {
+            display: table-cell;
+            vertical-align: middle;
+        }
+
+        .modal-container {
+            width: 300px;
+            margin: 0px auto;
+            padding: 20px 30px;
+            background-color: #fff;
+            border-radius: 2px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, .33);
+            transition: all .3s ease;
+            font-family: Helvetica, Arial, sans-serif;
+        }
+
+        .modal-header h3 {
+            margin-top: 0;
+            color: #42b983;
+        }
+
+        .modal-body {
+            margin: 20px 0;
+        }
+
+        .modal-default-button {
+            float: right;
+        }
+
+        /*
+        * the following styles are auto-applied to elements with
+        * v-transition="modal" when their visiblity is toggled
+        * by Vue.js.
+        *
+        * You can easily play with the modal transition by editing
+        * these styles.
+        */
+
+        .modal-enter, .modal-leave {
+            opacity: 0;
+        }
+
+        .modal-enter .modal-container,
+        .modal-leave .modal-container {
+            -webkit-transform: scale(1.1);
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <!--点击按钮时设置vue实例特性showModal的值为true-->
+    <button id="show-modal" @click="showM()">show modal</button>
+    <!--modal是自定义的一个插件，插件的特性show绑定vue实例的showModal特性-->
+    <modal v-show.sync="showModal" :showModal="showModal">
+        <!--替换modal插件中slot那么为header的内容-->
+        <h3 slot="header">Custom Header</h3>
+    </modal>
+</div>
+<!-- 实现script定义一个模板 -->
+<script type="x/template" id="modal-template">
+    <!--模板是否显示通过v-show="show"来设置， transition设置动画效果-->
+    <div class="modal-mask" v-show="re" transition="modal">
+        <div class="modal-wrapper">
+            <div class="modal-container">
+                <div class="modal-header">
+                    <!--slot 相当于header占位符-->
+                    <slot name="header">
+                        default header
+                    </slot>
+                </div>
+                <div class="modal-body">
+                    <!--slot 相当于body占位符-->
+                    <slot name="body">
+                        default body
+                    </slot>
+                </div>
+                <div class="modal-footer">
+                    <!--slot 相当于footer占位符-->
+                    <slot name="footer">
+                        default footer
+                    </slot>
+                    <button class="modal-default-button" @click="okfalse">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
+<script>
+   //定义一个插件，名称为modal
+    Vue.component("modal", {
+        //插件的模板绑定id为modal-template的DOM元素内容
+        template: "#modal-template",
+       props:["showModal"],
+        data:function(){
+            return {
+                re:this.showModal
+            }
+        },
+       watch:{
+            showModal(val) {
+                this.re = val;//②监听外部对props属性result的变更，并同步到组件内的data属性myResult中
+            },
+            re(val){
+               // this.showModal=false;                //xxcanghai 小小沧海 博客园
+                this.$emit("on-result-change",false);//③组件内对myResult变更后向外部发送事件通知
+            }
+        },
+        methods:{
+            okfalse:function(){
+                console.log("okfalse");
+               return this.re=false;
+            },
+        }
+    });
+    //实例化vue，作用域在id为app元素下，
+    new Vue({
+        el: "#app",
+        data: {
+            //特性，默认值为false
+            showModal: false,
+        },
+        methods:{
+            showM:function(){
+              console.log(this.showModal);
+              this.showModal=true;
+          },
+            onResultChange:function(v){
+                console.log(v);
+                this.showModal=v;//④外层调用组件方注册变更方法，将组件内的数据变更，同步到组件外的数据状态中
+            }
+      }
+
+    });
+
+</script>
+</body>
+</html>

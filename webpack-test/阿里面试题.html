@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>显示页面上所有元素的class</title>
+    <script src="jquery-3.1.1.min.js"></script>
+    <style>
+        /**:hover{
+        background-color: yellow;
+        }*/
+    </style>
+</head>
+<body>
+  <div class="xx1" style="border:1px solid black">
+      <ul class="xx2">
+          <li>haha</li>
+      </ul>
+      <span class="xx3">hhhhh</span>
+  </div>
+  <div class="tt1" style="border:1px solid black">
+      <ul class="tt">
+          <li>haha</li>
+      </ul>
+      <span class="xt3">hhhhh</span>
+  </div>
+<script>
+    document.querySelectorAll("div");
+    var ele=document.getElementsByTagName("body")[0].childNodes;
+    var classStr="";
+    for(var i=0;i<ele.length;i++){
+        console.log(ele.length);
+        if(ele[i].nodeType==1 && ele[i].nodeName!="SCRIPT"){
+            console.log(ele[i]);
+            $(ele[i]).hover(function(){
+                    console.log(i)
+                    console.log(ele[i]);
+                    if(ele[i]&&ele[i].nodeType==1&&ele[i].classList.length>0){
+                        console.log(ele[i].classList);
+                        for(var j=0;j<ele[i].classList.length;j++){
+                            classStr=classStr+ele[i].classList[j].toString();
+                        }
+                        $(ele[i]).attr("title",classStr);
+                    }
+                }())
+
+          //ele=ele[i].childNodes;
+        };
+
+    }
+    function fn(str){
+        var i=1;
+       // var s=str[0].toString().toLowerCase();
+        var s=str[0]-"a";
+        var j=1;
+        console.log(s)
+        while(str[j]){
+            console.log(j)
+            while(str[j]&&str[j]>"a"&&str[j]<"z"){
+                s=s+str[j];
+                j++;
+            }
+            if(str[j]){
+                s=s+"_";
+                s=s+str[j].toString().toLowerCase();
+                j++;
+            }
+        }
+        return s;
+    }
+  //  fn("HsdfBkk");
+</script>
+</body>
+</html>

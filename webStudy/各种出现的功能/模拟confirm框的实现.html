@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>模拟实现confirm框的实现</title>
+</head>
+<body>
+<div><button>弹出confirm框</button></div>
+<div class="modelConfirm" style="display: none;background-color:rgba(0,0,0,0.4);position: fixed;width:100%;height:100%;top:0;left:0" id="modelFrame">
+    <div style="width:400px;position: absolute;top:38%;left:50%;margin-left: -200px;border:1px solid #c6c6c6;background-color: white" id="modelBody">
+        <div id="content" class="text18" style="min-height: 100px;display: table;width:100%">
+            <div style="display: table-cell;vertical-align:middle;text-align: center;" id="defineWord">
+                sdfasdfasdfm
+            </div>
+        </div>
+        <div id="modelFooter" style="border-top:1px solid #c6c6c6;padding:10px 0;text-align: right;">
+            <button style="margin-right: 20px;" id="confirm">确定</button>
+            <button style="margin-right: 20px;" id="cancel">取消</button>
+        </div>
+    </div>
+</div>
+<script src="../dist/js/jquery3.js"></script>
+<script>
+    $("button").click(function(){
+        var f=popFrame("你确定要删除吗？")();
+        if(f){
+            console.log("ffff1==="+f);
+        }else{
+            console.log("ffff2==="+f);
+//            return;
+        }
+        console.log("sfasdfadsfadf")
+    })
+    function popFrame(str,key,data){
+        $("#modelFrame").show();
+        $("#defineWord").html(str);
+        var mask=-1;
+        setTimeout(function(){
+            return false
+        },0)
+        return $("#modelFrame").onclick=function(e){
+                e=e||window.event;
+                console.log(e)
+                if(e.target.id=="confirm"){
+                    $("#modelFrame").hide();
+                    if(typeof fn=="function"){
+                        fn(key,data);
+                    }
+                    mask=1;
+                    return true;
+                }
+                if(e.target.id=="cancel"){
+                    $("#modelFrame").hide();
+                    mask=0
+                    return false;
+                }
+            }
+         return false;
+//        return mask;
+    }
+</script>
+</body>
+</html>

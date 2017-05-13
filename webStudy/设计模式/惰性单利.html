@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>惰性单例实力</title>
+</head>
+<body>
+<button id="loginBnt">登入</button>
+<button id="iframeBtn">iframe的button</button>
+<button id="div1">节点的绑定事件</button>
+<button id="div">jquery中的one一次绑定事件</button>
+<script src="../dist/js/jquery3.js"></script>
+<script>
+   /*普通的实现方式
+    var createLogin=(function(){
+        var div;
+        return function(){
+            if(!div){
+                div=document.createElement("div");
+                div.innerHTML="我是登入的窗口";
+                div.style.display="none";
+                document.body.appendChild(div);
+            }
+            return div;
+        }
+    })();
+    document.getElementById("loginBnt").onclick=function(){
+        var l=createLogin();
+        l.style.display="block";
+    }*/
+   /***单例实现方式***/
+    var getSingle=function(fn){
+        var r;
+        return function (){
+            return r||(r=fn.apply(this,arguments));
+        }
+    }
+    var createLoginFram= function () {
+        var div;
+        div=document.createElement("div");
+        div.innerHTML="我是登入的窗口";
+        div.style.display="none";
+        document.body.appendChild(div);
+        return div;
+    }
+    var createSingLogin=getSingle(createLoginFram);
+    document.getElementById("loginBnt").onclick=function(){
+        var l=createSingLogin();
+        l.style.display="block";
+    }
+    var createSingFrame=getSingle(function(){
+        var ifra=document.createElement("iframe");
+        document.body.appendChild(ifra);
+        return ifra;
+    })
+    document.getElementById("iframeBtn").onclick=function(){
+        var l=createSingFrame();
+        l.src="http://baidu.com"
+    }
+    var bindEvent=getSingle(function(){
+        document.getElementById("div1").onclick=function(){
+            console.log("click");
+        }
+        return true;
+    })
+    var render=function(){
+        console.log("用惰性单例 js的实现开始渲染节点")
+        bindEvent();
+    }
+   /***函数render虽然运行了两次但是click事件只执行了一次***/
+    render();
+    render();
+var bindEventJquery=function(){
+    $("#div").click(function(){
+        console.log("jquery中的one click绑定事件")
+    })
+}
+var renderJquer=function(){
+   console.log("jquery中的节点开始渲染");
+   bindEventJquery();
+}
+   /***函数renderJquer运行了两次，点击一次click执行了两次***/
+    renderJquer();
+    renderJquer();
+</script>
+</body>
+</html>
