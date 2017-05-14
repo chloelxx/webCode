@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>订阅发布模式</title>
+</head>
+<body>
+<p>这是一个订阅发布模式</p>
+<script>
+    var event={
+//        clientList其实就是一个带有key value的二维数组
+        clientList:[],
+        listen:function(key,fn){
+            console.log(this.clientList);
+            if(!this.clientList[key]){
+                this.clientList[key]=[];
+            }
+            this.clientList[key].push(fn);
+            console.log(this.clientList);
+        },
+        trigger:function(){
+//            数组中的shift方法将删除数组中的第一个元素，原数组将改变为，删除了第一个元素的数组
+            var key=Array.prototype.shift.call(arguments),fns=this.clientList[key];
+            if(!fns||fns.length==0){
+                return false;
+            }
+            for(var i= 0,fn;fn=fns[i++];){
+                console.log(fns);
+                console.log(fns[i]);
+                fn.apply(this,arguments);
+            }
+        }
+    }
+//    取消订阅模式
+    event.remove=function(key,fn){
+        var fns=this.clientList[key];
+        if(!fns){
+            return false;
+        }
+        if(!fn){
+            fn&&(fn.length==0);
+        }else{
+            for(var i=fns.length-1;i>=0;i--){
+                var _fn=fns[i];
+                if(_fn===fn){
+                    fns.splice(i,1);
+                }
+            }
+        }
+    }
+    var installEvent=function(obj){
+        console.log(obj);
+        console.log(event);
+        for(var i in event){
+            console.log(i);
+            obj[i]=event[i];
+        }
+    }
+    var sale={};
+    installEvent(sale);
+    sale.listen('squareMeter88',fn1=function(price){
+        console.log("xiaoming价格=="+price);
+    })
+    sale.listen('squareMeter88',fn2=function(price){
+        console.log("xiaolan价格=="+price);
+    })
+    sale.listen("squareMeter120",function(price){
+        console.log("价格=="+price);
+    })
+//    sale.remove("squareMeter88",fn1);
+    sale.trigger("squareMeter88",20000);
+</script>
+</body>
+</html>

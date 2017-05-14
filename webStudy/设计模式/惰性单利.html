@@ -71,9 +71,12 @@
     render();
     render();
 var bindEventJquery=function(){
-    $("#div").click(function(){
+  /* $("#div").click(function(){
         console.log("jquery中的one click绑定事件")
-    })
+    })*/
+    $("#div")[0].onclick=function(){
+        console.log("jquery中的one click绑定事件");
+    }
 }
 var renderJquer=function(){
    console.log("jquery中的节点开始渲染");
