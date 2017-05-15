@@ -5,7 +5,8 @@
     <title>模拟实现confirm框的实现</title>
 </head>
 <body>
-<div><button>弹出confirm框</button></div>
+<div><button onclick="showPOP()">onclick的绑定事件 弹出confirm框</button></div>
+<div><button class="test">弹出confirm框</button></div>
 <div class="modelConfirm" style="display: none;background-color:rgba(0,0,0,0.4);position: fixed;width:100%;height:100%;top:0;left:0" id="modelFrame">
     <div style="width:400px;position: absolute;top:38%;left:50%;margin-left: -200px;border:1px solid #c6c6c6;background-color: white" id="modelBody">
         <div id="content" class="text18" style="min-height: 100px;display: table;width:100%">
@@ -21,16 +22,30 @@
 </div>
 <script src="../dist/js/jquery3.js"></script>
 <script>
-    $("button").click(function(){
+    $("button").click(function(){  //因为’确定‘按钮也是botton，所以点击”确定“的时候该事件处理函数再运行了一遍
+        //目前可行的模拟confirm弹框的方法是利用回调函数
         var f=popFrame("你确定要删除吗？")();
+        console.log("click事件")
         if(f){
             console.log("ffff1==="+f);
         }else{
             console.log("ffff2==="+f);
-//            return;
+            return;
         }
         console.log("sfasdfadsfadf")
     })
+/***用onclick绑定事件和用直接的click事件实现的弹框效果不一样****/
+/*function showPOP(){
+    var f=popFrame("你确定要删除吗？")();
+    console.log("onclick事件");
+        if(f){
+            console.log("ffff1==="+f);
+        }else{
+            console.log("ffff2==="+f);
+            return;
+        }
+        console.log("sfasdfadsfadf");
+}*/
     function popFrame(str,key,data){
         $("#modelFrame").show();
         $("#defineWord").html(str);
@@ -38,7 +53,7 @@
         setTimeout(function(){
             return false
         },0)
-        return $("#modelFrame").onclick=function(e){
+        return $("#modelFrame")[0].onclick=function(e){
                 e=e||window.event;
                 console.log(e)
                 if(e.target.id=="confirm"){
@@ -55,8 +70,30 @@
                     return false;
                 }
             }
-         return false;
+//         return false;
 //        return mask;
+    }
+    function popFrameCallBack(str,uid,id,items,key){
+        $("#modelFrame").show();
+        $("#defineWord").html(str);
+        return{
+            clickBtn:function(fn){
+                $("#modelFrame").click(function(e){
+                    e=e||window.event;
+                    if(e.target.id=="confirm"){
+                        $("#modelFrame").hide();
+                        if(fn){
+                            fn(uid,id,items,key);
+                        }
+                        return true;
+                    }
+                    if(e.target.id=="cancel"){
+                        $("#modelFrame").hide();
+                        return false;
+                    }
+                })
+            }
+        }
     }
 </script>
 </body>
