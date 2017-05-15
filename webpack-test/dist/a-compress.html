@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>webpack打包实例</title>
+    <!--这个vue的单页面的实例的js不能放在head中，原因暂时不详-->
+
+</head>
+<body>
+Mon May 15 2017 18:13:13 GMT+0800 (中国标准时间)
+
+  files : {"publicPath":"","chunks":{"a":{"size":738209,"entry":"js/a-compress.js","hash":"6049b2da25902e263f5a","css":[]},"main":{"size":192355,"entry":"js/main-compress.js","hash":"bbbf2c6a61dc7ceb5269","css":[]},"b":{"size":52,"entry":"js/b-compress.js","hash":"62cf8637f2d678e43953","css":[]}},"js":["js/a-compress.js","js/main-compress.js","js/b-compress.js"],"css":[]}
+
+  options : {"template":"E:\\webCode\\webpack-test\\node_modules\\html-webpack-plugin\\lib\\loader.js!E:\\webCode\\webpack-test\\a.html","filename":"a-compress.html","hash":false,"inject":false,"compile":true,"favicon":false,"minify":false,"cache":true,"showErrors":true,"chunks":"all","excludeChunks":[],"title":"this is a webpack","xhtml":false,"date":"2017-05-15T10:13:13.894Z"}
+
+<h1>欢迎来到webpack API</h1>
+<div id="test"></div>
+<button class="btn" onclick="showFrame()">show</button>
+<div id="show">
+</div>
+<script type="text/javascript" src="js/main-compress.js"></script>
+<!--<script type="text/javascript" src="bundle.js"></script>-->
+<script type="text/javascript" src="js/a-compress.js"></script>
+<script>
+    $(".btn")
+</script>
+</body>
+</html>

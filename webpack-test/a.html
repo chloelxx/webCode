@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>webpack打包实例</title>
+    <!--这个vue的单页面的实例的js不能放在head中，原因暂时不详-->
+
+</head>
+<body>
+<%= htmlWebpackPlugin.options.date %>
+<% for(var i in htmlWebpackPlugin){ %>
+  <%= i %> : <%= JSON.stringify(htmlWebpackPlugin[i]) %>
+<% } %>
+<h1>欢迎来到webpack API</h1>
+<div id="test"></div>
+<button class="btn" onclick="showFrame()">show</button>
+<div id="show">
+</div>
+<script type="text/javascript" src="<%= htmlWebpackPlugin.files.chunks.main.entry%>"></script>
+<!--<script type="text/javascript" src="bundle.js"></script>-->
+<script type="text/javascript" src="<%= htmlWebpackPlugin.files.chunks.a.entry%>"></script>
+</body>
+</html>
