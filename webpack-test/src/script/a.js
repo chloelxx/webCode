@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import app from './app.vue'
+import $ from 'jquery'
 require('./jquery3.js')
 function pro(){
 	console.log("q");
@@ -8,7 +9,8 @@ new Vue({
 	el: '#show',
 	render: h => h(app)
 })
-function showFrame(){
+
+window.showFrame=function(){
 	var f=popFrame("你确定要删除吗？").clickBtn(deleMen);
 }
 function popFrame(str,key,data){

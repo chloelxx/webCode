@@ -3,7 +3,7 @@
     <div style="width:400px;position: absolute;top:38%;left:50%;margin-left: -200px;border:1px solid #c6c6c6;background-color: white" id="modelBody" class="text18">
         <div id="tipsHeader" style="background-color: #7c00ff;color:white;padding:10px">
             提示
-            <p class="right" style="cursor: pointer;float:right" onclick="$('#modelFrame').hide()">X</p>
+            <p class="right" style="cursor: pointer;float:right" @click="cancel">X</p>
         </div>
         <div id="content" style="min-height: 100px;display: table;width:100%">
             <div style="display: table-cell;vertical-align:middle;text-align: center;" id="defineWord">
@@ -17,20 +17,29 @@
     </div>
 </div>
 </template>
-<style>
-  ul{
-    margin:0;
-    padding:0;
+<script>
+require('jquery')
+ export default {
+     name:"app",
+     data(){
+        return {
+           items:[
+             { message:"chloe"},
+             { message:"liu"},
+             { message:"xingxing"},
+           ],
+           title:"这是vue&vue-loader&webpack实例"
+        }
+     },
+     methods:{
+       confirm(){
+        $("#modelFrame").hide();
+          console.log("confirm")
+       },
+       cancel(){
+          $("#modelFrame").hide();
+          console.log("cancel");
+       }
+     }
   }
-  li{
-    list-style:none;
-    width:200px;
-    height:50px;
-  }
-  li:nth-child(odd){
-     color:yellow;
-  }
-  li:nth-child(even){
-     color:blue;
-  }
-</style>
+</script>
