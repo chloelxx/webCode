@@ -65,3 +65,13 @@ module.exports = {
 Tips:
 webpack的打包是基于模块来打包的，也就是说经过打包的文件代码是被打包到一个函数里，此时你所有定义的变量或者方法已变成局部的。
 如果想你的函数可以在全局范围下调用，可以用 window.funcName=function(){}的方式定义。
+
+=====================================webpack常见命令=============================
+$ webpack --config XXX.js   //使用另一份配置文件（比如webpack.config2.js）来打包
+
+$ webpack --watch   //监听变动并自动打包
+
+$ webpack -p    //压缩混淆脚本，这个非常非常重要！
+
+$ webpack -d    //生成map映射文件，告知哪些模块被最终打包到哪里了
+一篇很好的webpack教程url：http://www.cnblogs.com/vajoy/p/4650467.html

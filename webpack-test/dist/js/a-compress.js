@@ -26482,7 +26482,7 @@ new _vue2.default({
 	}
 });
 
-var showFrame = function showFrame() {
+window.showFrame = function () {
 	var f = popFrame("你确定要删除吗？").clickBtn(deleMen);
 };
 function popFrame(str, key, data) {

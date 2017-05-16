@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<p>利用组件实现两个页面的切换</p>
+<div id="app">
+    <button @click="showM('tabA')">tabA</button>
+    <button @click="showM('tabB')">tabB</button>
+    <component v-bind:is="isChoosen" v-bind:list="dataStr"></component>
+</div>
+<template id="tabA">
+    <div>
+        <h1>{{list}}</h1>
+        <p>{{objA}}-{{name}}</p>
+        <p style="color:red;background-color: pink">这是tabA的内容</p>
+    </div>
+</template>
+<template id="tabB">
+    <div>
+        <h1>{{list}}</h1>
+        <p>{{objB}}-{{name}}</p>
+        <p style="color:black;background-color: yellow">这是tabB的内容</p>
+    </div>
+</template>
+<script src="../dist/js/vue.js"></script>
+<script>
+    //实例化vue，作用域在id为app元素下，
+    new Vue({
+        el: "#app",
+        data: {
+            isChoosen:"tabA",
+            dataStr:"我是父vue中的数据，现在传输给组件A,B",
+        },
+        methods:{
+            showM:function(str){
+                this.isChoosen=str;
+            },
+        },
+        components:{
+            tabA:{
+                template:"#tabA",
+                props:["list"],
+                data:function(){
+                    return {
+                        objA:"this is a tab",
+                        name:"tabA",
+                    }
+                }
+
+            },
+            tabB:{
+                template:"#tabB",
+                props:["list"],
+                data:function(){
+                    return {
+                        objB:"this is b tab",
+                        name:"tabB",
+                    }
+                }
+            }
+        }
+    });
+
+</script>
+</body>
+</html>
