@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <style>
+        ul, body, input {
+            padding: 0;
+            margin: 0;
+        }
+  div{
+      width:400px;
+      margin:0 auto;
+  }
+  input,li{
+      height:40px;
+  }
+        .ipt1 {
+            border: 1px solid #ccc;
+            width: 200px;
+            /*position: absolute;*/
+            /*top: -999em;*/
+        }
+
+        .ipt1 li {
+            list-style: none;
+            padding: 3px;
+            font-size: 14px;
+            font-family: "Microsoft yahei";
+        }
+
+        .act_li {
+            background: rgb(85, 85, 85);
+            color: #fff;
+        }
+
+        .nact_li {
+            background: none;
+            color: #000;
+        }
+    </style>
+    <!--<script src="dist/main.js"></script>-->
+    <script>
+        window.onload=function()
+        {
+            var oIpt=document.getElementById('ipt1');
+            var oUl=document.getElementById('ul1');
+            var aLi=oUl.getElementsByTagName('li');
+            var ie=!-[1,];
+            var arr=[];
+            var arr2=[];
+            var iNow=0;
+           //initArr();
+           // initArr2();
+            function initArr(){
+                for (var i = 0; i < aLi.length; i++) {
+                    var t = '<' + aLi[i].getAttribute("remail") + '>';
+                    var oInnerText = document.createTextNode('inText');
+                    oInnerText.nodeValue = t;
+                    console.log("oInnerText===");
+                    console.log(oInnerText);
+                    aLi[i].appendChild(oInnerText);
+                    arr.push(i);
+                }
+            }
+            function initArr2() {
+                for (var i = 0; i < aLi.length; i++) {
+                    aLi[i].index = i;
+                    console.log("i===" + i);
+                    aLi[i].onclick = function (ev) {
+                        console.log("i===" + i);
+                        var choose = ev || event;
+                        oIpt.value = this.getAttribute("remail");
+                        choose.cancelBubble = true;
+                        iNow = this.index;
+                        for(var i=0;i<arr.length;i++){
+                            if(arr[i]==this.index){
+                                iNow=i;
+                            }
+                        }
+                        iNow = this.index;
+                        setInow();
+                    }
+                    aLi[i].ondblclick = function (ev) {
+                        console.log("鼠标双击事件");
+                        var choose = ev || event;
+                        oIpt.value = this.getAttribute("remail");
+                        choose.cancelBubble = true;
+                        iNow = this.index;
+                        for(var i=0;i<arr.length;i++){
+                            if(arr[i]==this.index){
+                                iNow=i;
+                            }
+                        }
+                        iNow = this.index;
+                        setInow();
+                        oUl.style.display="none"
+                    }
+                    console.log("aLi[i].children[0].innerHTML===" + aLi[i].children[0].innerHTML);
+                    arr2.push(aLi[i].children[0].innerHTML);
+                }
+            }
+            function setInow()
+            {
+                if(arr.length)
+                {
+                    for(var i=0;i<arr.length;i++)
+                    {
+                        aLi[arr[i]].className='nact_li';
+                    };
+                    aLi[arr[iNow]].className='act_li';
+                }
+            }
+            function getMail()
+            {
+                iNow=0;
+                arr=[];
+                var re=new RegExp("^"+this.value,"i");
+                console.log("change事件===")
+                for(var i=0;i<aLi.length;i++)
+                {
+                    console.log(arr);
+                    if(re.test(aLi[i].getAttribute("remail")))
+                    {
+                        console.log("aLi[i].innerText,i=="+i,aLi[i].getAttribute("remail"));
+                        arr.push(i);
+                        aLi[i].style.display="block";
+                    }
+                    else
+                    {
+                        aLi[i].style.display="none";
+                    }
+                }
+              /*  var re3=new RegExp('(?="('+this.value+'))','i');
+                var str="";
+                if(arr.length)
+                {
+                    for(var i=0;i<arr.length;i++)
+                    {
+                        console.log("arr[i]==="+arr[i]);
+                        console.log("arr2[arr[i]]==="+arr2[arr[i]]);
+                        var af=arr2[arr[i]].replace(re3,function($0,$1) {
+                                    str='<b>"'+$1+'</b>'
+                                }
+                        );
+                        str+=arr2[arr[i]].substring(this.value.length+1);
+                        aLi[arr[i]].children[0].innerHTML=str;
+                    }
+
+                }*/
+                console.log(arr);
+                setInow();
+            }
+            oIpt.onclick=function(ev)
+            {
+                var choose=ev||event;
+                oUl.style.display="block";
+                choose.cancelBubble=true;
+            }
+            document.onclick=function()
+            {
+                oUl.style.display="none";
+            }
+            if(ie)
+            {
+                oIpt.onpropertychange=getMail;
+            }
+            else
+            {
+                oIpt.oninput=getMail;
+            }
+
+            oIpt.onkeydown=function(ev)
+            {
+                var choose=ev||event;
+                str=choose.target.value;
+                console.log("keydown事件 str=="+str)
+                console.log("keydown事件 arr.length=="+arr.length);
+                if(choose.keyCode=='38')
+                {
+                    if(iNow<=0){iNow=arr.length;};
+                    iNow--;
+                }
+                if(choose.keyCode=='40')
+                {
+                    if(iNow>arr.length-2){iNow=-1};
+                    iNow++;
+                }
+                if(choose.keyCode==13)
+                {
+                    this.value=aLi[arr[iNow]].getAttribute("remail");
+                    oUl.style.display="none";
+                }
+                setInow();
+            }
+
+        }
+    </script>
+</head>
+<body>
+<div>
+    <input type="text" id="ipt1" class="ipt"/>
+    <ul id="ul1" class="ipt1" style="display: none">
+        <li remail="aaaaasah1@qq.com" class="act_li"><span>"asah1"</span></li>
+        <li remail="aaaasahq@qq.com"><span>"asah1"</span></li>
+        <li remail="aaasah3@qq.com"><span>"asah1"</span></li>
+        <li remail="aasa56@qq.com"><span>"asah1"</span></li>
+        <li remail="aswe@qq.com"><span>"asah1"</span></li>
+        <li remail="awerw@qq.com"><span>"asah1"</span></li>
+        <li remail="asah1@qq.com"><span>"asah1"</span></li>
+        <li remail="bsah2@qq.com"><span>"bsah2"</span></li>
+        <li remail="csah3@qq.com"><span>"csah3"</span></li>
+        <li remail="dsah4@qq.com"><span>"dsah4"</span></li>
+        <li remail="esah5@qq.com"><span>"esah5"</span></li>
+        <li remail="fsah6@qq.com"><span>"fsah6"</span></li>
+        <li remail="asah7@qq.com"><span>"asah7"</span></li>
+        <li remail="bsah8@qq.com"><span>"bsah8"</span></li>
+        <li remail="csah9@qq.com"><span>"csah9"</span></li>
+        <li remail="csah10@qq.com"><span>"csah10"</span></li>
+        <li remail="csah11@qq.com"><span>"csah11"</span></li>
+    </ul>
+</div>
+
+</body>
+</html>
