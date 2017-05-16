@@ -10,7 +10,7 @@ new Vue({
 	render: h => h(app)
 })
 
-window.showFrame=function(){
+var showFrame=function(){
 	var f=popFrame("你确定要删除吗？").clickBtn(deleMen);
 }
 function popFrame(str,key,data){

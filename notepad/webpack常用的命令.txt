@@ -55,3 +55,13 @@ module.exports = {
 }
 
 在项目中安装jquery依赖，一定不能少。
+用webpack打包的时候如果想要引用jquery库的话，需要先安装jquery
+命令：npm install jquery
+然后再在你的.vue后缀名的文件中的
+<script>
+ require('jquery');
+</script>
+引用别人的原话：你npm install jquery，然后直接就require('jquery')，这样就引入了。
+Tips:
+webpack的打包是基于模块来打包的，也就是说经过打包的文件代码是被打包到一个函数里，此时你所有定义的变量或者方法已变成局部的。
+如果想你的函数可以在全局范围下调用，可以用 window.funcName=function(){}的方式定义。
