@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 19);
+/******/ 	return __webpack_require__(__webpack_require__.s = 20);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -26573,13 +26573,13 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
 
 /* styles */
-__webpack_require__(17)
+__webpack_require__(18)
 
 var Component = __webpack_require__(5)(
   /* script */
-  null,
+  __webpack_require__(12),
   /* template */
-  __webpack_require__(15),
+  __webpack_require__(16),
   /* scopeId */
   null,
   /* cssModules */
@@ -26607,8 +26607,65 @@ module.exports = Component.exports
 
 /***/ }),
 /* 11 */,
-/* 12 */,
-/* 13 */
+/* 12 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+   value: true
+});
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+exports.default = {
+   data: function data() {
+      return {
+         items: [{ message: "chloe" }, { message: "liu" }, { message: "xingxing" }],
+         title: "这是vue&vue-loader&webpack实例"
+      };
+   },
+   methods: function methods() {}
+};
+
+/***/ }),
+/* 13 */,
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)();
@@ -26622,13 +26679,11 @@ exports.push([module.i, "\nul{\n  margin:0;\n  padding:0;\n}\nli{\n  list-style:
 
 
 /***/ }),
-/* 14 */,
-/* 15 */
+/* 15 */,
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _vm._m(0)
-},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "modelConfirm",
     staticStyle: {
@@ -26658,7 +26713,42 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "id": "modelBody"
     }
-  }, [_c('div', {
+  }, [_vm._m(0), _vm._v(" "), _vm._m(1), _vm._v(" "), _c('div', {
+    staticStyle: {
+      "border-top": "1px solid #c6c6c6",
+      "padding": "10px 0",
+      "text-align": "right"
+    },
+    attrs: {
+      "id": "modelFooter"
+    }
+  }, [_c('button', {
+    staticStyle: {
+      "margin-right": "20px",
+      "background-color": "#7c00ff",
+      "color": "#fff"
+    },
+    attrs: {
+      "id": "confirm"
+    },
+    on: {
+      "click": _vm.confirm
+    }
+  }, [_vm._v("确定")]), _vm._v(" "), _c('button', {
+    staticStyle: {
+      "margin-right": "20px",
+      "background-color": "#7c00ff",
+      "color": "#fff"
+    },
+    attrs: {
+      "id": "cancel"
+    },
+    on: {
+      "click": _vm.cancel
+    }
+  }, [_vm._v("取消")])])])])
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
     staticStyle: {
       "background-color": "#7c00ff",
       "color": "white",
@@ -26676,7 +26766,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "onclick": "$('#modelFrame').hide()"
     }
-  }, [_vm._v("X")])]), _vm._v(" "), _c('div', {
+  }, [_vm._v("X")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
     staticStyle: {
       "min-height": "100px",
       "display": "table",
@@ -26694,34 +26786,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "id": "defineWord"
     }
-  }, [_vm._v("\r\n                sdfasdfasdf\r\n            ")])]), _vm._v(" "), _c('div', {
-    staticStyle: {
-      "border-top": "1px solid #c6c6c6",
-      "padding": "10px 0",
-      "text-align": "right"
-    },
-    attrs: {
-      "id": "modelFooter"
-    }
-  }, [_c('button', {
-    staticStyle: {
-      "margin-right": "20px",
-      "background-color": "#7c00ff",
-      "color": "#fff"
-    },
-    attrs: {
-      "id": "confirm"
-    }
-  }, [_vm._v("确定")]), _vm._v(" "), _c('button', {
-    staticStyle: {
-      "margin-right": "20px",
-      "background-color": "#7c00ff",
-      "color": "#fff"
-    },
-    attrs: {
-      "id": "cancel"
-    }
-  }, [_vm._v("取消")])])])])
+  }, [_vm._v("\r\n                sdfasdfasdf\r\n            ")])])
 }]}
 module.exports.render._withStripped = true
 if (false) {
@@ -26732,14 +26797,14 @@ if (false) {
 }
 
 /***/ }),
-/* 16 */,
-/* 17 */
+/* 17 */,
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(13);
+var content = __webpack_require__(14);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -26759,8 +26824,8 @@ if(false) {
 }
 
 /***/ }),
-/* 18 */,
-/* 19 */
+/* 19 */,
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -26811,9 +26876,6 @@ function popFrame(str, key, data) {
 			});
 		}
 	};
-}
-function deleMen() {
-	console.log("asdf");
 }
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(8)))
 

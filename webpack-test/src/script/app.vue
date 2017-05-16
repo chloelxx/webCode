@@ -11,8 +11,8 @@
             </div>
         </div>
         <div id="modelFooter" style="border-top:1px solid #c6c6c6;padding:10px 0;text-align: right;">
-            <button style="margin-right: 20px;background-color: #7c00ff;color: #fff;" id="confirm">确定</button>
-            <button style="margin-right: 20px;background-color: #7c00ff;color: #fff;" id="cancel">取消</button>
+            <button style="margin-right: 20px;background-color: #7c00ff;color: #fff;" id="confirm" @click="confirm">确定</button>
+            <button style="margin-right: 20px;background-color: #7c00ff;color: #fff;" id="cancel" @click="cancel">取消</button>
         </div>
     </div>
 </div>

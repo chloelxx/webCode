@@ -19,5 +19,20 @@
 <script type="text/javascript" src="<%= htmlWebpackPlugin.files.chunks.main.entry%>"></script>
 <!--<script type="text/javascript" src="bundle.js"></script>-->
 <script type="text/javascript" src="<%= htmlWebpackPlugin.files.chunks.a.entry%>"></script>
+<script>
+    new Vue({
+        el:"#show",
+        methods:{
+            confirm:function(){
+              //  $("#modelFrame").hide();
+                console.log("aa");
+            },
+            cancel:function(){
+               // $("#modelFrame").hide();
+                console.log("bb");
+            }
+        }
+    })
+</script>
 </body>
 </html>

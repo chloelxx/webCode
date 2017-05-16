@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body{
+            font-size: 18px;
+        }
+        .content{
+            margin:0 auto;
+            width:300px;
+        }
+        ul{
+            margin:0;
+            padding:0;
+            border: 1px solid silver;
+            width:240px;
+            list-style: none;
+        }
+        li{
+            list-style: none;
+        }
+        ul li:not(:last-child){
+            padding:10px 20px;
+            border-bottom: 1px solid silver;
+            width:200px;
+        }
+        ul li:last-child{
+            padding:10px 20px;
+            width:200px;
+        }
+        input{
+            width:200px;
+            font-size: 18px;
+            height:20px;
+            padding:5px 10px;
+        }
+        /*  .warp{
+              display: none;
+          }*/
+        .act{
+            background:rgb(85,85,85);color:#fff;
+            display:inline-block;
+        }
+        .inact{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<div class="content" id="assign">
+    <input type="text" id="username" class="select" @focus="clearDefaultValue()" @keydown="mathRole()" @click="initData()">
+    <ul class="warp atUsersItems" id="wrap" v-show="match">
+        <li class="chk">
+            aaaa
+        </li>
+        <li class="chk">
+            aaabbb
+        </li>
+        <li class="chk">
+            abbb
+        </li>
+        <li class="chk">
+            aabbb
+        </li>
+        <li class="chk">
+            aaab
+        </li>
+        <li class="chk">
+            aaaabbbb
+        </li>
+        <li class="chk">
+            bbb
+        </li>
+        <li class="chk">
+            ccc
+        </li>
+        <li class="chk">
+            dddd
+        </li>
+    </ul>
+</div>
+<script src="../dist/js/jquery3.js"></script>
+<script src="../dist/js/vue.js"></script>
+<script>
+    var ie=!-[1,];
+    var arr=[],arr2=[],iNow=0;
+    function setNow(){
+        var allLI=$(".atUsersItems li");
+        if(arr.length) {
+            for (var i = 0; i < arr.length; i++) {
+                $(allLI[arr2[arr[i]]]).removeClass("act");
+            }
+            $(allLI[arr2[arr[iNow]]]).addClass("act");
+        }
+    }
+    /***
+     * v-show指令倒置这个功能和autoMatch.html页面同一种原理实现的不一样。
+     * *****/
+    function getMatch(){
+        iNow=0;
+        arr=[];
+        var re=new RegExp("^"+this.value,"i");
+        console.log(this);
+        var aLi=$(".atUsersItems li");
+        if(!vm.match){
+            vm.match=true;
+        }
+        for(var i=0;i<aLi.length;i++)
+        {
+            if(re.test(aLi[i].innerText.replace(/[\r\n\\ +]/g,"")))
+            {
+                arr.push(i);
+                aLi[i].style.display="block";
+                arr2[arr[i]]=i;
+            }
+            else
+            {
+                aLi[i].style.display="none";
+            }
+        }
+        console.log(arr)
+        setNow();
+    }
+    var vm=new Vue({
+        el:"#assign",
+        data:{
+            manager:true,
+            add:false,
+            managerList:[],
+            match:false,
+            roleList:[{
+                role:"",
+                isRight:false,
+            }],
+            editUUID:"",
+            userList:[],
+            offset:0,
+            question: '',
+            answer:'',
+        },
+        watch:{
+
+        },
+        methods:{
+            initData:function(ev){
+                var choose=ev||event;
+                 $("#wrap").show();
+                choose.cancelBubble=true;
+            },
+            mathRole:function(e){
+                var choose=e||event;
+                str=$(choose.target).val();
+                console.log("str=="+str);
+                console.log("length=="+arr.length);
+                if(choose.keyCode=='38')
+                {
+                    if(iNow<=0){
+                        iNow=arr.length;
+                    }
+                    iNow--;
+                }
+                if(choose.keyCode=='40')  //向下箭头
+                {
+                    if(iNow>arr.length-2){
+                        iNow=-1
+                    };
+                    iNow++;
+                }
+                if(choose.keyCode==13)
+                {
+                    $(choose.target).val()
+                }
+                console.log("isNow=="+iNow);
+                setNow()
+            },
+            clearDefaultValue:function (e){
+                e=e||event;
+                if(e.target.value==e.target.defaultValue) {
+                    e.target.value="";
+                }
+            },
+            resultText:function(e){
+                e=e||event;
+                var s=$(e.target).html();
+                $("#username").val(s.replace(/[\r\n\s+]/g,""));
+                this.match=false;
+            }
+        },
+    })
+
+    if(ie)
+    {
+        document.getElementById("username").onpropertychange=getMatch;
+    }
+    else
+    {
+        document.getElementById("username").oninput=getMatch;
+    }
+</script>
+</body>
+</html>

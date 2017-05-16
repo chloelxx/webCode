@@ -35,5 +35,5 @@ function popFrame(str,key,data){
 	}
 }
 function deleMen(){
-	console.log("asdf");
+	console.log("show confirm");
 }
