@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vuex的简单实例</title>
+</head>
+<body>
+<div id="app">
+    <p>{{ count }}-{{sum}}</p>
+    <p>
+        <button @click="increment">+</button>
+        <button @click="decrement">-</button>
+    </p>
+    <!--这是一个局部组件-->
+    <my-component></my-component>
+</div>
+<template id="temp">
+    <div>
+        <button>{{sum}}</button>
+    </div>
+</template>
+<script src="../dist/js/vue.js"></script>
+<script src="../dist/js/vue-router.js"></script>
+<script src="../dist/js/vuex.js"></script>
+<script>
+    const store = new Vuex.Store({
+        state: {
+            count: 0,
+            sum:0,
+        },
+        mutations: {
+//            inc: state => state.count++,
+//            dec: state => state.count--,
+            inc:function(state){
+                 state.count++;
+                 state.sum++;
+            },
+            dec:function(state){
+                 state.count--;
+                 state.sum++;
+            }
+        }
+    })
+    const Counter = {
+        template: "#temp",
+        props:["list"],
+        computed: {
+            sum () {
+                return store.state.sum
+            }
+        }
+    }
+
+    const app = new Vue({
+        el: '#app',
+        data:{
+            showModel:true,
+        },
+        computed: {
+            count () {
+                return store.state.count
+            },
+            sum () {
+                return store.state.sum
+            }
+        },
+        methods: {
+            increment () {
+                store.commit('inc')
+            },
+            decrement () {
+                store.commit('dec')
+            }
+        },
+        components:{
+            'my-component':Counter
+        },
+    })
+</script>
+</body>
+</html>

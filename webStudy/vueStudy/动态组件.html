@@ -3,12 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link href="../dist/css/style.css" rel="stylesheet">
 </head>
 <body>
 <p>利用组件实现两个页面的切换</p>
 <div id="app">
-    <button @click="showM('tabA')">tabA</button>
-    <button @click="showM('tabB')">tabB</button>
+    <button @click="showM('showA')">tabA</button>
+    <button @click="showM('showB')">tabB</button>
+    <!--这是一个元组件，根据is的值可以决定渲染那个组件-->
     <component v-bind:is="isChoosen" v-bind:list="dataStr"></component>
 </div>
 <template id="tabA">
@@ -19,7 +21,7 @@
     </div>
 </template>
 <template id="tabB">
-    <div>
+    <div class="colorR">
         <h1>{{list}}</h1>
         <p>{{objB}}-{{name}}</p>
         <p style="color:black;background-color: yellow">这是tabB的内容</p>
@@ -31,7 +33,7 @@
     new Vue({
         el: "#app",
         data: {
-            isChoosen:"tabA",
+            isChoosen:"showA",
             dataStr:"我是父vue中的数据，现在传输给组件A,B",
         },
         methods:{
@@ -40,7 +42,7 @@
             },
         },
         components:{
-            tabA:{
+            showA:{
                 template:"#tabA",
                 props:["list"],
                 data:function(){
@@ -51,7 +53,7 @@
                 }
 
             },
-            tabB:{
+            showB:{
                 template:"#tabB",
                 props:["list"],
                 data:function(){

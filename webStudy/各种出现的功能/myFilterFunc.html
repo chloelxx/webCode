@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>自己实现一个filter函数的功能</title>
+</head>
+<body>
+<p>自己编写的一个filter函数的功能</p>
+<script>
+//    Array.prototype.filter=function(el,index,arr){
+//
+//    }
+//    var a=[{done:true,name:1},{done:true,name:2}];
+//    a.filter(function(a){
+//        return a.done;
+//    })
+var a=[{done:true,name:1},{done:false,name:2}];
+var bb=a.filter(function(arr){
+    return arr.done
+})
+    console.log(bb)
+</script>
+</body>
+</html>
