@@ -16,6 +16,7 @@
 </div>
 <template id="temp">
     <div>
+        <h2>{{doneTodosCount}}</h2>
         <button>{{sum}}</button>
     </div>
 </template>
@@ -27,7 +28,20 @@
         state: {
             count: 0,
             sum:0,
+            todos: [
+                { id: 1, text: 'chloelxx', done: true },
+                { id: 2, text: 'liuxingxing', done: false },
+            ],
+            doneTodosCount:0,
         },
+//        getters: {
+//            doneTodos: state => {
+//                return state.todos.filter(todo => todo.done)
+//            },
+//            doneTodosCount: (state, getters) => {
+//                 return getters.doneTodos.length
+//            }
+//         },
         mutations: {
 //            inc: state => state.count++,
 //            dec: state => state.count--,
@@ -39,7 +53,14 @@
                  state.count--;
                  state.sum++;
             }
-        }
+        },
+       actions: {
+           incrementAsync ({ commit }) {
+               setTimeout(() => {
+                   commit('inc')
+               }, 1000)
+           }
+       }
     })
     const Counter = {
         template: "#temp",
@@ -47,8 +68,11 @@
         computed: {
             sum () {
                 return store.state.sum
-            }
-        }
+            },
+            doneTodosCount () {
+                return store.state.todos.filter(todo => todo.done).length
+            },
+        },
     }
 
     const app = new Vue({
@@ -62,7 +86,13 @@
             },
             sum () {
                 return store.state.sum
-            }
+            },
+//            doneTodosCount () {
+//                return store.state.doneTodosCount
+//            },
+//            doneTodosCount () {
+//                return store.todos.filter(todo => todo.done).length
+//            }
         },
         methods: {
             increment () {
@@ -70,11 +100,15 @@
             },
             decrement () {
                 store.commit('dec')
-            }
+            },
         },
         components:{
             'my-component':Counter
         },
+    })
+    // 以载荷形式分发
+    store.dispatch('incrementAsync', {
+        amount: 10
     })
 </script>
 </body>
