@@ -24,7 +24,7 @@
       <file leaf-file-name="动态组件.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/webStudy/vueStudy/动态组件.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-30.0">
+            <state vertical-scroll-proportion="0.0">
               <caret line="58" column="32" selection-start-line="58" selection-start-column="32" selection-end-line="58" selection-end-column="32" />
               <folding>
                 <element signature="n#style#0;n#p#1;n#div#0;n#template#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -37,7 +37,7 @@
       <file leaf-file-name="双向数据绑定.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/webStudy/vueStudy/双向数据绑定.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-15.75">
+            <state vertical-scroll-proportion="0.0">
               <caret line="27" column="59" selection-start-line="27" selection-start-column="59" selection-end-line="27" selection-end-column="59" />
               <folding />
             </state>
@@ -47,7 +47,7 @@
       <file leaf-file-name="vue.js实现模态窗口.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/webStudy/vueStudy/vue.js实现模态窗口.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.75">
+            <state vertical-scroll-proportion="0.0">
               <caret line="93" column="38" selection-start-line="0" selection-start-column="0" selection-end-line="149" selection-end-column="7" />
               <folding />
             </state>
@@ -57,7 +57,7 @@
       <file leaf-file-name="局部组件.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/webStudy/vueStudy/局部组件.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-21.75">
+            <state vertical-scroll-proportion="0.0">
               <caret line="29" column="32" selection-start-line="29" selection-start-column="32" selection-end-line="29" selection-end-column="32" />
               <folding />
             </state>
@@ -67,7 +67,7 @@
       <file leaf-file-name="全局组件.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/webStudy/vueStudy/全局组件.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-16.5">
+            <state vertical-scroll-proportion="0.0">
               <caret line="22" column="24" selection-start-line="22" selection-start-column="24" selection-end-line="22" selection-end-column="24" />
               <folding>
                 <marker date="1495007911765" expanded="true" signature="495:582" placeholder="..." />
@@ -79,8 +79,8 @@
       <file leaf-file-name="vuexSimpleCase.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/webStudy/vuex/vuexSimpleCase.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="1.9489796">
-              <caret line="109" column="38" selection-start-line="109" selection-start-column="38" selection-end-line="109" selection-end-column="38" />
+            <state vertical-scroll-proportion="-0.6530612">
+              <caret line="92" column="27" selection-start-line="92" selection-start-column="27" selection-end-line="92" selection-end-column="27" />
               <folding />
             </state>
           </provider>
@@ -89,8 +89,8 @@
       <file leaf-file-name="lash函数的实例.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/webStudy/vueStudy/lash函数的实例.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-24.0">
-              <caret line="49" column="34" selection-start-line="43" selection-start-column="20" selection-end-line="49" selection-end-column="34" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="52" column="24" selection-start-line="35" selection-start-column="22" selection-end-line="52" selection-end-column="24" />
               <folding />
             </state>
           </provider>
@@ -99,7 +99,7 @@
       <file leaf-file-name="myFilterFunc.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/webStudy/各种出现的功能/myFilterFunc.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-12.75">
+            <state vertical-scroll-proportion="0.0">
               <caret line="17" column="30" selection-start-line="17" selection-start-column="30" selection-end-line="17" selection-end-column="30" />
               <folding />
             </state>
@@ -109,7 +109,7 @@
       <file leaf-file-name="jquery3.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/webStudy/dist/js/jquery3.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-9.866667">
+            <state vertical-scroll-proportion="0.0">
               <caret line="1929" column="56" selection-start-line="1929" selection-start-column="50" selection-end-line="1929" selection-end-column="56" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
@@ -215,7 +215,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -366,11 +365,12 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
       <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="F:/vue-demo-collection" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="HbShouldOpenHtmlAsHb" value="" />
     <property name="settings.editor.selected.configurable" value="Settings.JavaScript" />
@@ -496,7 +496,6 @@
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17395833" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -508,6 +507,7 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -733,7 +733,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -741,9 +740,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="n#!!doc" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -751,7 +747,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="15" column="55" selection-start-line="15" selection-start-column="55" selection-end-line="15" selection-end-column="55" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -759,7 +754,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="47" column="28" selection-start-line="47" selection-start-column="28" selection-end-line="47" selection-end-column="28" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -767,7 +761,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="17" column="55" selection-start-line="17" selection-start-column="55" selection-end-line="17" selection-end-column="55" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -775,7 +768,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="26454" column="55" selection-start-line="26454" selection-start-column="55" selection-end-line="26454" selection-end-column="55" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -783,7 +775,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="34" column="14" selection-start-line="34" selection-start-column="14" selection-end-line="34" selection-end-column="14" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -791,7 +782,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="76" column="61" selection-start-line="76" selection-start-column="61" selection-end-line="76" selection-end-column="61" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -799,9 +789,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-10.5">
           <caret line="14" column="4" selection-start-line="14" selection-start-column="4" selection-end-line="14" selection-end-column="4" />
-          <folding>
-            <element signature="n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -809,7 +796,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-6.0">
           <caret line="8" column="1" selection-start-line="8" selection-start-column="1" selection-end-line="8" selection-end-column="1" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -825,12 +811,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-5.75">
           <caret line="17" column="29" selection-start-line="17" selection-start-column="29" selection-end-line="17" selection-end-column="29" />
-          <folding>
-            <marker date="1495001515204" expanded="true" signature="28:266" placeholder="..." />
-            <marker date="1495001515204" expanded="true" signature="273:1547" placeholder="..." />
-            <marker date="1495001515204" expanded="true" signature="666:721" placeholder="..." />
-            <marker date="1495001515204" expanded="true" signature="803:1539" placeholder="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -838,13 +818,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="189" column="36" selection-start-line="189" selection-start-column="36" selection-end-line="189" selection-end-column="36" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/webStudy/dist/js/jquery3.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-9.866667">
+        <state vertical-scroll-proportion="0.0">
           <caret line="1929" column="56" selection-start-line="1929" selection-start-column="50" selection-end-line="1929" selection-end-column="56" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
@@ -858,7 +837,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/webStudy/各种出现的功能/myFilterFunc.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-12.75">
+        <state vertical-scroll-proportion="0.0">
           <caret line="17" column="30" selection-start-line="17" selection-start-column="30" selection-end-line="17" selection-end-column="30" />
           <folding />
         </state>
@@ -866,7 +845,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/webStudy/vueStudy/全局组件.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-16.5">
+        <state vertical-scroll-proportion="0.0">
           <caret line="22" column="24" selection-start-line="22" selection-start-column="24" selection-end-line="22" selection-end-column="24" />
           <folding>
             <marker date="1495007911765" expanded="true" signature="495:582" placeholder="..." />
@@ -876,7 +855,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/webStudy/vueStudy/vue.js实现模态窗口.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.75">
+        <state vertical-scroll-proportion="0.0">
           <caret line="93" column="38" selection-start-line="0" selection-start-column="0" selection-end-line="149" selection-end-column="7" />
           <folding />
         </state>
@@ -884,7 +863,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/webStudy/vueStudy/动态组件.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-30.0">
+        <state vertical-scroll-proportion="0.0">
           <caret line="58" column="32" selection-start-line="58" selection-start-column="32" selection-end-line="58" selection-end-column="32" />
           <folding>
             <element signature="n#style#0;n#p#1;n#div#0;n#template#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -895,7 +874,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/webStudy/vueStudy/双向数据绑定.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-15.75">
+        <state vertical-scroll-proportion="0.0">
           <caret line="27" column="59" selection-start-line="27" selection-start-column="59" selection-end-line="27" selection-end-column="59" />
           <folding />
         </state>
@@ -903,7 +882,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/webStudy/vueStudy/局部组件.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-21.75">
+        <state vertical-scroll-proportion="0.0">
           <caret line="29" column="32" selection-start-line="29" selection-start-column="32" selection-end-line="29" selection-end-column="32" />
           <folding />
         </state>
@@ -919,16 +898,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/webStudy/vueStudy/lash函数的实例.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-24.0">
-          <caret line="49" column="34" selection-start-line="43" selection-start-column="20" selection-end-line="49" selection-end-column="34" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="52" column="24" selection-start-line="35" selection-start-column="22" selection-end-line="52" selection-end-column="24" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/webStudy/vuex/vuexSimpleCase.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.9489796">
-          <caret line="109" column="38" selection-start-line="109" selection-start-column="38" selection-end-line="109" selection-end-column="38" />
+        <state vertical-scroll-proportion="-0.6530612">
+          <caret line="92" column="27" selection-start-line="92" selection-start-column="27" selection-end-line="92" selection-end-column="27" />
           <folding />
         </state>
       </provider>

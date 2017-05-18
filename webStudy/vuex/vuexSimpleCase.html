@@ -3,14 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <title>vuex的简单实例</title>
+    <link href="../dist/css/style.css">
 </head>
 <body>
 <div id="app">
     <p>{{ count }}-{{sum}}</p>
+    <h2 class="colorR">{{asynData}}</h2>
     <p>
         <button @click="increment">+</button>
         <button @click="decrement">-</button>
     </p>
+    <button @click="incrementAsync">actions</button>
     <!--这是一个局部组件-->
     <my-component></my-component>
 </div>
@@ -18,11 +21,15 @@
     <div>
         <h2>{{doneTodosCount}}</h2>
         <button>{{sum}}</button>
+        <button @click="add">showName</button>
     </div>
 </template>
+<script src="../dist/js/jquery3.js"></script>
 <script src="../dist/js/vue.js"></script>
+<script src="https://unpkg.com/lodash@4.13.1/lodash.min.js"></script>
 <script src="../dist/js/vue-router.js"></script>
 <script src="../dist/js/vuex.js"></script>
+
 <script>
     const store = new Vuex.Store({
         state: {
@@ -33,6 +40,7 @@
                 { id: 2, text: 'liuxingxing', done: false },
             ],
             doneTodosCount:0,
+            asynData:"chloe",
         },
 //        getters: {
 //            doneTodos: state => {
@@ -46,19 +54,27 @@
 //            inc: state => state.count++,
 //            dec: state => state.count--,
             inc:function(state){
-                 state.count++;
-                 state.sum++;
+                setTimeout(function (){
+                    console.log("inc的setTimeout方法outer")
+                    state.count++;
+                    state.sum++;
+                },500)
+               console.log("inc的setTimeout方法inner")
             },
             dec:function(state){
                  state.count--;
                  state.sum++;
+            },
+            incrementAsync:function(state){
+                state.asynData="chloelxxx"
             }
         },
        actions: {
-           incrementAsync ({ commit }) {
-               setTimeout(() => {
-                   commit('inc')
-               }, 1000)
+           incAction (context) {
+              setTimeout(function(){
+                  console.log("actions");
+                  context.commit('incrementAsync');
+              },1000)
            }
        }
     })
@@ -73,6 +89,11 @@
                 return store.state.todos.filter(todo => todo.done).length
             },
         },
+        methods:{
+            add:function(){
+                store.dispatch('incAction');
+            }
+        }
     }
 
     const app = new Vue({
@@ -93,6 +114,9 @@
 //            doneTodosCount () {
 //                return store.todos.filter(todo => todo.done).length
 //            }
+            asynData:function(){
+                return store.state.asynData;
+            }
         },
         methods: {
             increment () {
@@ -101,15 +125,18 @@
             decrement () {
                 store.commit('dec')
             },
+            incrementAsync(){
+                store.commit('incrementAsync')
+            }
         },
         components:{
             'my-component':Counter
         },
     })
     // 以载荷形式分发
-    store.dispatch('incrementAsync', {
-        amount: 10
-    })
+//    store.dispatch('incrementAsync', {
+//        asynData: 10
+//    })
 </script>
 </body>
 </html>
