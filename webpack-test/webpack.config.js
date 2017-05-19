@@ -9,8 +9,9 @@ module.exports={
 	},
 	output:{
 		path: "./dist",
-		filename: "js/[name]-compress.js",
-		//
+		//filename: "js/[name]-compress.js",
+		publicPath : '/asset/',
+		filename:'js/[name]-compress.js'
 		//publicPath:"http://cdn.com/",//表示你的项目上线后的地址。http://cdn.com/将替换"./dist",地址
 	},
 	//加载器  
@@ -39,10 +40,10 @@ module.exports={
 			//inject:'head',  //指定js是放在head中还是body中 inject的值可以为false表示不把js注入到head或者body中
 			title: "this is a webpack",
 			/*date:new Date(),*/
-			minify:{
-				removeComments:true,
-				collapseWhitespace:true,
-			} //压缩
+			//minify:{
+			//	removeComments:true,
+			//	collapseWhitespace:true,
+			//} //压缩
 		}),
 		new htmlWebpackPlugin({
 			//title: '简单页面',
@@ -80,5 +81,8 @@ module.exports={
 		//	name: "main", filename: "main-compress.js"
 		//}),  //压缩，加密js文件
 	],
-	
+	//热加载
+	devServer: {
+		hot: true
+	}
 }

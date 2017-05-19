@@ -19,7 +19,7 @@ const router = new VueRouter({
 const App = Vue.extend(require('./index.vue'))
 
 new Vue({
-    el: '#root',
+    el: '#test',
     router,
     render: h => h(App)
 }).$mount('#app');

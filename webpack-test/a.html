@@ -15,8 +15,10 @@
 <div id="test"></div>
 <button class="btn" onclick="showFrame()">show</button>
 <div id="show"></div>
-<script type="text/javascript" src="<%= htmlWebpackPlugin.files.chunks.main.entry%>"></script>
+<!--<script type="text/javascript" src="<%= htmlWebpackPlugin.files.chunks.main.entry%>"></script>-->
 <!--<script type="text/javascript" src="bundle.js"></script>-->
-<script type="text/javascript" src="<%= htmlWebpackPlugin.files.chunks.a.entry%>"></script>
+<!--<script type="text/javascript" src="<%= htmlWebpackPlugin.files.chunks.a.entry%>"></script>-->
+<!--热替换的js的加载-->
+<script type="text/javascript" src="asset/js/main-compress.js"></script>
 </body>
 </html>
