@@ -5,7 +5,7 @@ module.exports={
 	entry:{
 		main: "./src/script/main.js",
 		a: "./src/script/a.js",
-		b: "./src/script/b.js",
+		index: "./src/script/index.js",
 	},
 	output:{
 		path: "./dist",
