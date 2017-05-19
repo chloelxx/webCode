@@ -75,3 +75,7 @@ $ webpack -p    //压缩混淆脚本，这个非常非常重要！
 
 $ webpack -d    //生成map映射文件，告知哪些模块被最终打包到哪里了
 一篇很好的webpack教程url：http://www.cnblogs.com/vajoy/p/4650467.html
+
+===========vue的单页面构建
+vue构建单页面，然后用webpack的热加载，启动的初始页面必须是index.html,其他名字的页面没有用，访问不聊
+如main.html,test.html

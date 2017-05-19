@@ -14,8 +14,12 @@
         <!-- 使用 router-link 组件来导航. -->
         <!-- 通过传入 `to` 属性指定链接. -->
         <!-- <router-link> 默认会被渲染成一个 `<a>` 标签 -->
-        <router-link class="coR" to="/foo">Go to Foo</router-link>
-        <router-link class="coY" to="/bar">Go to Bar</router-link>
+        <router-link class="coR" style="color:#000;font-weight: bold;" to="/foo">
+           Go to Foo
+        </router-link>
+        <router-link class="coY" style="color:#000;font-weight: bold;" to="/bar">
+           Go to Bar
+        </router-link>
     </p>
     <!-- 路由出口 -->
     <!-- 路由匹配到的组件将渲染在这里 -->
@@ -23,8 +27,11 @@
     <router-view name="b" style="color:pink"></router-view>
 </div>
 <template id="fooBar">
-    <div class="colorY">这是一个vue的路由的B</div>
-    <h1>this is a vue-router simple case</h1>
+    <div>
+       this is a vue-router simple case
+       <h1>this is a vue-router simple case</h1>
+    </div>
+    
 </template>
 <template id="a">
     <div class="colorR">这是一个vue的路由的A</div>
