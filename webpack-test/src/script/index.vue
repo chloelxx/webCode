@@ -10,6 +10,32 @@
        </p>
        <!-- 路由出口 -->
        <!-- 路由匹配到的组件将渲染在这里 -->
-       <router-view></router-view>
+       <router-view name="a" style="color:orange"></router-view>
    </div>
 </template>
+<script>
+require('jquery')
+ export default {
+     name:"index",
+     data(){
+        return {
+           items:[
+             { message:"chloe"},
+             { message:"liu"},
+             { message:"xingxing"},
+           ],
+           title:"这是vue&vue-loader&webpack实例"
+        }
+     },
+     methods:{
+       confirm(){
+        $("#modelFrame").hide();
+          console.log("confirm")
+       },
+       cancel(){
+          $("#modelFrame").hide();
+          console.log("cancel");
+       }
+     }
+  }
+</script>

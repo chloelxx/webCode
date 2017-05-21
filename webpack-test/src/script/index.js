@@ -2,14 +2,21 @@ import Vue from 'vue'
 import VueRouter from "vue-router"
 import Hello from './../../component/hello.vue'
 import Word from './../../component/word.vue'
+import Show from './../../component/show.vue'
+import Confirm from './../../component/confirm.vue'
 Vue.use(VueRouter)
 
 const routes = [{
     path: '/hello',
-    component: Hello
+    components: {
+            a:Confirm
+
+       }
 }, {
     path: '/word',
-    component: Word
+    components: {
+            a:Show
+        }
 }];
 
 const router = new VueRouter({
@@ -21,5 +28,5 @@ const App = Vue.extend(require('./index.vue'))
 new Vue({
     el: '#test',
     router,
-    render: h => h(App)
+    render: h => h(App),
 }).$mount('#app');

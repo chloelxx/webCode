@@ -1,22 +1,18 @@
-import Vue from 'vue'
-import app from './app.vue'
 import $ from 'jquery'
 require('./jquery3.js')
+
 function pro(){
 	console.log("q");
 }
-new Vue({
-	el: '#show',
-	render: h => h(app)
-})
 
 window.showFrame=function(){
-	var f=popFrame("你确定要删除吗？").clickBtn(deleMen);
+	// var f=popFrame("你确定要删除吗？").clickBtn(deleMen);
+	popFrame("你确定要删除吗？")
 }
 function popFrame(str,key,data){
 	$("#modelFrame").show();
 	$("#defineWord").html(str);
-	return{
+	/*return {
 		clickBtn:function(fn){
 			$("#modelFrame").click(function(e){
 				e=e||window.event;
@@ -28,14 +24,14 @@ function popFrame(str,key,data){
 					}
 					return true;
 				}
-				if(e.target.id=="cancel"){
+				if(e.target.id=="cancel"||e.target.id=="close"){
 					$("#modelFrame").hide();
 					return false;
 				}
 			})
 		}
-	}
+	}*/
 }
-function deleMen(){
+/*function deleMen(){
 	console.log("show confirm");
-}
+}*/
