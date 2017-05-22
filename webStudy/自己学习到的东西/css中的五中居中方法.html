@@ -2,9 +2,96 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>css使元素居中的五种方法</title>
+    <style>
+        #wrapper {
+            display: table;
+            width:300px;
+            height:300px;
+            border:1px solid red;
+            padding:0px 10px;
+        }
+        #cell { display: table-cell; vertical-align: middle; }
+        #absCenter{
+            position: absolute;
+            width:300px;
+            height:200px;
+            left:50%;
+            top:50%;
+            margin-left: -150px;
+            margin-top:-100px;
+            border:1px solid #000;
+        }
+        #floater {
+            /*float: left;*/
+            /*height: 50%;*/
+            /*margin-bottom: -100px;*/
+            border:1px solid red;
+        }
+
+        #content {
+            /*clear: both;*/
+            /*width:300px;*/
+            /*height:200px;*/
+            /*left:50%;*/
+            /*top:50%;*/
+            /*margin-left: -150px;*/
+            /*margin-top:-100px;*/
+            border:1px solid #000;
+            position: relative;
+        }
+    </style>
 </head>
 <body>
+<h2>方法一：设置元素的display属性为table</h2>
+<p>优点：content 可以动态改变高度(不需在 CSS 中定义)。当 wrapper 里没有足够空间时， content 不会被截断缺点：Internet Explorer(甚至 IE8 beta)中无效，许多嵌套标签(其实没那么糟糕，另一个专题)
+</p>
+<div id="wrapper">
+    <div id="cell">
+        <div class="content">
+            Content goes here
+            #wrapper { display: table; }
+            #cell { display: table-cell; vertical-align: middle; }
+        </div>
+    </div>
+</div>
+<hr>
+<h2>方法二：使用绝对定位</h2>
+<div style="border: 1px solid red;position: relative;width:500px;height:300px">
+    <div id="absCenter">
+        这个方法使用绝对定位的 div，把它的 top 设置为 50％，top margin 设置为负的 content 高度。这意味着对象必须在 CSS 中指定固定的高度。
+    </div>
+</div>
+<hr>
+<h2>方法三：使用绝对定位</h2>
+<p>这种方法，在 content 元素外插入一个 div。设置此 div height:50%; margin-bottom:-contentheight;。content 清除浮动，并显示在中间。</p>
+<div style="border: 1px solid blue;height:500px;">
+    <div id="floater" style="float: left;height: 50%;margin-bottom: -40px;"></div>
+    <div id="content" style="clear:both;height:80px;position: relative;overflow: auto">
+        Content here dfgsdfgdfg 哈哈哈哈哈哈哈哈哈哈哈或或或或或或或或或或或哈哈
+        哈哈哈哈哈哈或或或或或或或或或或或哈哈哈哈哈哈哈哈或或或或或或或或或或或好好好
+        <strong>这种方法，在 content 元素外插入一个 div。设置此 div height:50%; margin-bottom:-contentheight;。content 清除浮动，并显示在中间。</strong>
+    </div>
+</div>
+
+<hr>
+<h2>方法四：</h2>
+<p>这个方法使用了一个 position:absolute，有固定宽度和高度的 div。这个 div 被设置为 top:0; bottom:0;。但是因为它有固定高度，
+    其实并不能和上下都间距为 0，因此 margin:auto; 会使它居中。使用 margin:auto;使块级元素垂直居中是很简单的。
+</p>
+<div style="border: 1px solid blue;height:500px;position: relative">
+    <div id="containWrap" style="position: absolute;left:0;top:0;right:0;bottom: 0;margin:auto;height:80px;border:1px solid red;overflow: auto">
+        asdfasdfasdf  <strong>方法四</strong>
+        这个方法使用了一个 position:absolute，有固定宽度和高度的 div。这个 div 被设置为 top:0; bottom:0;。但是因为它有固定高度，
+        其实并不能和上下都间距为 0，因此 margin:auto; 会使它居中。使用 margin:auto;使块级元素垂直居中是很简单的。
+    </div>
+</div>
+<hr>
+<h2>方法五:适用于单行文本居中</h2>
+<p>这个方法只能将单行文本置中。只需要简单地把 line-height 设置为那个对象的 height 值就可以使文本居中了。</p>
+<div style="width: 300px;height:300px;border:1px solid red;line-height: 300px">
+    <div>asdfasdfasdf这个方法只能将单行文本。dffffffffffffffffffffffffffffffffffffmmmmmmmmmmmmmmmmmmmmmmyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy</div>
+</div>
 
 </body>
 </html>
