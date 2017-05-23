@@ -31,16 +31,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/webpack-test/src/script/index.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="28" column="16" selection-start-line="28" selection-start-column="16" selection-end-line="28" selection-end-column="16" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="main.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/webpack-test/src/script/main.js">
           <provider selected="true" editor-type-id="text-editor">
@@ -104,12 +94,24 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="promise的用法.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="promise的用法.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/webStudy/自己学习到的东西/promise的用法.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6020408">
+            <state vertical-scroll-proportion="-14.75">
               <caret line="46" column="10" selection-start-line="46" selection-start-column="10" selection-end-line="46" selection-end-column="10" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="js算法.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/webStudy/自己学习到的东西/js算法.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.66629213">
+              <caret line="108" column="5" selection-start-line="108" selection-start-column="5" selection-end-line="108" selection-end-column="5" />
+              <folding>
+                <element signature="n#!!doc;n#Array#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -139,8 +141,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="JavaScript File" />
         <option value="HTML File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -168,6 +170,7 @@
         <option value="$PROJECT_DIR$/webpack-test/a.html" />
         <option value="$PROJECT_DIR$/webStudy/自己学习到的东西/css中的五中居中方法.html" />
         <option value="$PROJECT_DIR$/webStudy/自己学习到的东西/promise的用法.html" />
+        <option value="$PROJECT_DIR$/webStudy/自己学习到的东西/js算法.js" />
       </list>
     </option>
   </component>
@@ -322,7 +325,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="E:/studyBook/html5Code" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="HbShouldOpenHtmlAsHb" value="" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
@@ -339,7 +342,7 @@
       <recent name="E:\webCode\webStudy\vuex-router-webpack-demo\src" />
     </key>
   </component>
-  <component name="RunManager" selected="JavaScript Debug.promise的用法.html">
+  <component name="RunManager" selected="Node.js.js算法.js">
     <configuration default="false" name="routerCase.html" type="JavascriptDebugType" factoryName="JavaScript Debug" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/webCode/webStudy/vueRouter/routerCase.html">
       <method />
     </configuration>
@@ -350,6 +353,9 @@
       <method />
     </configuration>
     <configuration default="false" name="promise的用法.html" type="JavascriptDebugType" factoryName="JavaScript Debug" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/webCode/webStudy/自己学习到的东西/promise的用法.html">
+      <method />
+    </configuration>
+    <configuration default="false" name="js算法.js" type="NodeJSConfigurationType" factoryName="Node.js" temporary="true" path-to-node="C:/Program Files/nodejs/node" path-to-js-file="js算法.js" working-dir="$PROJECT_DIR$/webStudy/自己学习到的东西">
       <method />
     </configuration>
     <configuration default="true" type="DartCommandLineRunConfigurationType" factoryName="Dart Command Line Application">
@@ -400,18 +406,20 @@
       <recursive>false</recursive>
       <method />
     </configuration>
-    <list size="4">
+    <list size="5">
       <item index="0" class="java.lang.String" itemvalue="JavaScript Debug.routerCase.html" />
       <item index="1" class="java.lang.String" itemvalue="JavaScript Debug.a-compress.html" />
       <item index="2" class="java.lang.String" itemvalue="JavaScript Debug.index-compress.html" />
       <item index="3" class="java.lang.String" itemvalue="JavaScript Debug.promise的用法.html" />
+      <item index="4" class="java.lang.String" itemvalue="Node.js.js算法.js" />
     </list>
     <recent_temporary>
-      <list size="4">
-        <item index="0" class="java.lang.String" itemvalue="JavaScript Debug.promise的用法.html" />
-        <item index="1" class="java.lang.String" itemvalue="JavaScript Debug.index-compress.html" />
-        <item index="2" class="java.lang.String" itemvalue="JavaScript Debug.routerCase.html" />
-        <item index="3" class="java.lang.String" itemvalue="JavaScript Debug.a-compress.html" />
+      <list size="5">
+        <item index="0" class="java.lang.String" itemvalue="Node.js.js算法.js" />
+        <item index="1" class="java.lang.String" itemvalue="JavaScript Debug.promise的用法.html" />
+        <item index="2" class="java.lang.String" itemvalue="JavaScript Debug.index-compress.html" />
+        <item index="3" class="java.lang.String" itemvalue="JavaScript Debug.routerCase.html" />
+        <item index="4" class="java.lang.String" itemvalue="JavaScript Debug.a-compress.html" />
       </list>
     </recent_temporary>
   </component>
@@ -429,14 +437,14 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="0" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="1" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1375" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32946146" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.53643084" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -540,7 +548,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="n#!!doc" expanded="true" />
+            <element signature="n#!!doc" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -613,7 +621,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="n#!!doc" expanded="true" />
+            <element signature="n#!!doc" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -737,7 +745,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="n#!!doc" expanded="true" />
+            <element signature="n#!!doc" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -829,9 +837,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/webStudy/自己学习到的东西/promise的用法.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6020408">
+        <state vertical-scroll-proportion="-14.75">
           <caret line="46" column="10" selection-start-line="46" selection-start-column="10" selection-end-line="46" selection-end-column="10" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webStudy/自己学习到的东西/js算法.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.66629213">
+          <caret line="108" column="5" selection-start-line="108" selection-start-column="5" selection-end-line="108" selection-end-column="5" />
+          <folding>
+            <element signature="n#!!doc;n#Array#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
