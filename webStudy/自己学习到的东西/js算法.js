@@ -22,7 +22,7 @@ Array.prototype.deleteMore=function() {
  * 1、如果数据是无序的可以利用快速排序对数据排序，然后再去重
  * 2、如果数据是有序的直接可以去重
  * ****/
-//实现快速排序
+/****实现快速排序*****/
 function qiuckSort(left,right,arr){
     if(left<right){
         var p=position(left,right,arr);
@@ -55,6 +55,7 @@ function position(left,right,a){
 var arr=[1,2,7,8,3,5,6,9,0,11,1,2,11];
 qiuckSort(0,12,arr);
 console.log(arr)
+/***去重***/
 function deleteMoreThanOne(){
     var i, j,temp= 0,arr=[];
     var arr=arguments,len=arr.length;
@@ -89,7 +90,7 @@ var a=deleteMoreThanOne(1,2,7,8,3,5,6,9,0,11,1,2,11);
 console.log("去重之后的数据结果===");
 console.log(a);
 //请填充代码，使mySort()能使传入的参数按照从小到大的顺序显示出来。
-//交换排序 时间复杂度O(n^2);对于数据量比较的数据不适合用来做排序
+/****交换排序 时间复杂度O(n^2);对于数据量比较的数据不适合用来做排序****/
 function mySort() {
     var i= 0;
     var j=0;
