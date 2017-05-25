@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>node.js+mySql simple case</title>
+</head>
+<body>
+<h1>利用node.js和mySQL做的一个学生管理系统</h1>
+<button>data</button>
+<div></div>
+<script src="jquery3.js"></script>
+<script>
+    function fn(data){
+        console.log(11111);
+        console.log(data);
+        var html = '<ul>';
+        for(var i = 0; i < data.length; i++)
+        {
+            html += '<li>' + data[i] + '</li>';
+        }
+        html += '</ul>';
+
+        $('div').html(html);
+    }
+    $(function(){
+        $('button').click(function() {
+//            $.ajax({
+//                url:'http://127.0.0.1:8089/',  //这是一个跨域的请求，因为端口号不同
+//                success:function(da)
+//                {
+//                    $('div').html(da);
+//
+//                }
+//            });
+            console.log(222)
+            $.getJSON("http://127.0.0.1:8080/jsonp?callback=?", function(data) {
+                console.log(11111);
+                console.log(data);
+                var html = '<ul>';
+                for(var i = 0; i < data.length; i++)
+                {
+                    html += '<li>' + data[i].name + '</li>';
+                }
+                html += '</ul>';
+
+                $('div').html(html);
+            });
+
+        })
+    })
+</script>
+<script type="text/javascript" src="http://127.0.0.1:8080/jsonp?callback=fn"></script>
+
+</body>
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>用es5的方法实现promise</title>
+</head>
+<body>
+<p>用es5的方法是先promise对象</p>
+<script>
+    /****
+     promise对象调用时的心得体会
+     1.多个回调嵌套调用的时候每个回调都要return一个promise对象，这样下次就可以进行多个  xxx.then().then()的链时调用
+
+     ****/
+    function loadImageAsync(url) {
+        return new Promise(function(resolve, reject) {
+            var image = new Image();
+            var img=document.createElement("img");
+            img.style.border='1px solid red';
+            img.style.width="300px";
+            img.id="img"
+            document.body.appendChild(img);
+            image.src = url;
+            image.onload = function() {
+                resolve(url); //promise中加载成功的resolve回调函数只能传递一个参数，详情见源码
+            };
+
+            image.onerror = function() {
+                reject(url);
+            };
+
+            // image.src = url;
+        });
+    }
+    function resolveImg(url){
+        document.getElementsByTagName("p").innerHTML="图片加载成功";
+        document.getElementById("img").src=url;
+        console.log("onload success");
+        console.log("========onload之后执行的回调函数  xxx.then().then()======");
+        return new Promise(function(r,j){  //return 一个promise对象
+            var t=Math.random();
+            if (t > 0.5) {
+                r(t)
+            } else {
+                j(t)
+            }
+        })
+    }
+    function success(t){
+        console.log("running time success=="+t);
+    }
+    function fail(t){
+        console.log("running time fail=="+t);
+    }
+    console.log(resolveImg);
+    loadImageAsync("../dist/image/to.jpg").then(resolveImg).then(success).catch(fail)
+    // 男神的各项参数
+    var NanShen = {
+        "身高": 180,
+        "体重": 80,
+        "年薪": "200K",
+        request: function(obj) {
+            // 成功与否随机决定
+            // 执行成功的概率为80%
+            if (Math.random() > 0.5) {
+                obj.success();
+            } else {
+                obj.error();
+            }
+        }
+    };
+
+    var Request = function(name) {
+        return new Promise(function(resolve, reject) {
+            var failed = 0, request = function() {
+                NanShen.request({
+                    name: name,
+                    success: function() {
+                        console.log(name + "攻略成功！");
+                        failed = 0;
+                        resolve();
+                    },
+                    error: function() {
+                        if (failed == 0) {
+                            console.log("第一次攻略" + name + "失败，重试一次！");
+                            failed = 1;
+                            // 重新攻略一次
+                            request();
+                        } else {
+                            console.log("依然没有拿下" + name + "，求婚失败！");
+                            reject();
+                        }
+                    }
+                });
+            };
+
+            request();
+        });
+    };
+
+    Request("岳父")                                // 搞定岳父，然后...
+            .then(function() { return Request("大伯"); })  // 搞定大伯，然后...
+            .then(function() { return Request("大姑"); })  // 搞定大姑，然后...
+            .then(function() {                            // 长辈们全部KO后，攻略女神
+                NanShen.request({
+                    name: "女神",
+                    success: function() {
+                        console.log("女神同意，求婚成功！");
+                    },
+                    error: function() {
+                        console.log("女神不同意，求婚失败！");
+                    }
+                });
+            }).catch(function(){
+        console.log("求婚失败 fail")
+    });
+</script>
+</body>
+</html>

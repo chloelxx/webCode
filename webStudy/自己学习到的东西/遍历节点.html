@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Dom遍历</title>
+    <script src="jquery-3.1.1.js"></script>
+    <style type="text/css">
+        *{
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<div id="frm" class="tt1" style="border:1px solid red">
+    用户名:<input type="text" name="username" id="uname"/>
+    <p class="kk mm">sdfa</p>
+    <h1>asdfasdfasdf</h1>
+</div>
+<div class="vv" style="border:1px solid blue;">asdfasdf
+    <span class="tt2">span</span>
+</div>
+</body>
+</html>
+<script type="text/javascript">
+    <!--
+    //当窗体加载完毕后触发此函数
+    window.onload = function(){
+        //document 获取根元素
+        var root = document.body;
+        $("body *").each(function(k,v){
+                console.log($(this).attr("class"));
+                $(this).hover(function (event) {
+                    console.log($(this));
+                    console.log(event)
+                    event.stopPropagation();
+                    event.preventDefault();
+                    if($(this).attr("class")) {
+                        $(this).attr("title", $(this).attr("class"))
+                    }else{
+                        $(this).attr("title", "");
+                    }
+                })
+
+
+        })
+        //遍历所哟的节点
+       // traverseNodes(root);
+        //console.log(msg);
+    }
+
+    function traverseNodes(node){
+
+        //判断是否是元素节点
+        if(node.nodeType == 1&&node.nodeName.toLowerCase()!="script"){
+            display(node);
+            node.onclick=function(){
+                console.log(this)
+                console.log(node)
+                console.log(node.nodeName);
+            }
+           /* //判断是否有属性节点
+            for(var i=0;i<node.attributes.length;i++){
+                //得到属性节点
+                var attr = node.attributes.item(i);
+                //判断该节点是否存在
+                if(attr.specified){
+                    //如果存在 显示输出
+                    display(attr);
+                }
+            }*/
+
+            //判断该元素节点是否有子节点
+            if(node.hasChildNodes){
+                //得到所有的子节点
+                var sonnodes = node.childNodes;
+                //遍历所哟的子节点
+                for (var i = 0; i < sonnodes.length; i++) {
+                    //得到具体的某个子节点
+                    var sonnode = sonnodes.item(i);
+                    console.log(sonnode);
+                    //递归遍历
+                    traverseNodes(sonnode);
+                }
+            }
+        }
+    }
+
+    var msg = "";
+    var num=0;
+    function display(node){
+        msg+=(++num)+" nodeName="+node.nodeName+" nodeValue="+node.nodeValue+" nodeType="+node.nodeType+"<br/>";
+    }
+    //-->
+</script>
