@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>装饰者模式的simple case</title>
+</head>
+<body>
+<p>装饰者模式的简单实例</p>
+<script>
+    Function.prototype.after=function(callback){
+        var self=this;
+        console.log(this);
+        return function(){
+            
+            var r=self.apply(this,arguments);
+            callback.apply(this,arguments);
+            console.log(r)
+            return r;
+        }
+    }
+    var showLogin=function(){
+        name:"chloe";
+        console.log("打开登入窗口");
+        return 2
+    }
+    var log=function(){
+        console.log("aop的应用");
+    }
+    showLogin=showLogin.after(log);
+    var s=new showLogin();
+    console.log(s);
+</script>
+</body>
+</html>
