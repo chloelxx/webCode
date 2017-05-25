@@ -79,3 +79,8 @@ $ webpack -d    //生成map映射文件，告知哪些模块被最终打包到�
 ===========vue的单页面构建
 vue构建单页面，然后用webpack的热加载，启动的初始页面必须是index.html,其他名字的页面没有用，访问不聊
 如main.html,test.html
+
+====
+git每次在push的时候都要输入git的账户名和密码：避免每次输入用户名和密码可以在git中输入一下命令
+git config --global credential.helper store
+====
