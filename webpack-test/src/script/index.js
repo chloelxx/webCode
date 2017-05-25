@@ -4,14 +4,18 @@ import Hello from './../../component/hello.vue'
 import Word from './../../component/word.vue'
 import Show from './../../component/show.vue'
 import Confirm from './../../component/confirm.vue'
+import fa from  './../../component/frame.vue'
 Vue.use(VueRouter)
+
 
 const routes = [{
     path: '/hello',
-    components: {
-            a:Confirm
-
-       }
+    components: { a:Confirm},
+    children:[
+        {
+            path: '/hello/frame', component: fa
+        },
+    ],
 }, {
     path: '/word',
     components: {
