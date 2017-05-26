@@ -5,6 +5,9 @@ import Word from './../../component/word.vue'
 import Show from './../../component/show.vue'
 import Confirm from './../../component/confirm.vue'
 import fa from  './../../component/frame.vue'
+
+import {x} from './exportTest.js'
+console.log("exportTest=="+x);
 Vue.use(VueRouter)
 
 
@@ -34,3 +37,4 @@ new Vue({
     router,
     render: h => h(App),
 }).$mount('#app');
+
