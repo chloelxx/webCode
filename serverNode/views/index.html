@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>这是nodejs的一个开发小实例</title>
+</head>
+<body>
+<div>
+    <label>姓名：<input type="text" name="name" class="inTextCss"></label>
+    <label>年龄：<input type="text" name="age" class="inTextCss"></label>
+    <label>性别：
+        <input type="radio" name="sex" class="inTextCss" checked value="男">男
+        <input type="radio" name="sex" class="inTextCss" value="女">女
+    </label>
+
+    <button id="submit">提交</button>
+</div>
+<script src="dist/jquery3.js"></script>
+<script>
+    $("#submit").click(function(){
+        var param={
+            name:$("input[name=name]").val(),
+            age:$("input[name=age]").val(),
+            sex:$("input[name=sex]").val(),
+        }
+        console.log(param);
+        $.ajax({
+            url:"/register",
+            method:"POST",
+            data:param,
+            success:function(data){
+                console.log(data);
+            }
+        })
+    })
+</script>
+</body>
+</html>

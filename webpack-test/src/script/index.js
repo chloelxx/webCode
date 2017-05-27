@@ -6,8 +6,15 @@ import Show from './../../component/show.vue'
 import Confirm from './../../component/confirm.vue'
 import fa from  './../../component/frame.vue'
 
-import {x} from './exportTest.js'
-console.log("exportTest=="+x);
+import {obj} from './exportTest.js'
+console.log("exportTest==");
+console.log(obj);
+console.log(obj.a());
+
+let re=require("./exportTest");
+console.log("re11===");
+console.log(re);
+console.log(re.obj.a());
 Vue.use(VueRouter)
 
 
