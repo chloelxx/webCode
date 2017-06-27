@@ -8,13 +8,13 @@
 <body>
 <div id="app">
     <!--这是一个局部组件-->
-    {{sum}}
+    {{name}}
     <button @click="increment">+</button>
     <my-component v-bind:count="sum"></my-component>
 </div>
 <template id="temp">
     <div>
-        <p>{{com}}</p>
+        <p>组件{{com}}</p>
     </div>
 </template>
 <script>
@@ -36,11 +36,13 @@
     new Vue({
         el: '#app',
         data: {
-          sum:0,
+          sum:[1,2,3],
+            name:0,
         },
         methods: {
             increment: function (){
-               this.sum=this.sum+1;
+               //this.sum=this.sum+1;
+                this.name=this.name+1;
             }
         },
         components:{

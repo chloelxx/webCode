@@ -58,12 +58,15 @@
                     console.log("inc的setTimeout方法outer")
                     state.count++;
                     state.sum++;
+                    console.log("我想看看vue的实例是否存在",app)
                 },500)
                console.log("inc的setTimeout方法inner")
             },
             dec:function(state){
                  state.count--;
                  state.sum++;
+                state.aa="222";
+                console.log(state);
             },
             incrementAsync:function(state){
                 state.asynData="chloelxxx"
@@ -101,8 +104,15 @@
         data:{
             showModel:true,
         },
+        mounted:function(){
+            store.commit('inc')
+        },
         computed: {
             count () {
+                console.log("this==",this)
+               /* if(store.state.count<3) {
+                    store.commit('inc')
+                }*/
                 return store.state.count
             },
             sum () {

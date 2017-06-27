@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BFC</title>
+    <style>
+        body{
+            width:700px;
+            position: relative;
+        }
+        .aside{
+            width:100px;
+            float: left;
+            height:100px;
+            background-color: yellow;
+        }
+        .main{
+            overflow: hidden;
+            display: inline;
+            /*display: inline-block;*/
+            height: 200px;
+            background-color: mediumvioletred;
+        }
+    </style>
+</head>
+<body>
+<div class="aside"></div>
+<div class="main"></div>
+</body>
+</html>

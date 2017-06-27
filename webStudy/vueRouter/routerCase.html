@@ -30,7 +30,8 @@
 <template id="fooBar">
     <div>
        this is a vue-router simple case
-        <router-link class="coR" style="color:#000;font-weight: bold;" to="/foo/frame">
+        <!--to="/foo/frame/:testId" -->
+        <router-link class="coR" style="color:#000;font-weight: bold;" :to="{ name: 'foo/name', params: { userId: 123 }}">
             <button class="btn" @click="showFrame">show</button>
         </router-link>
         <router-view style="color:pink"></router-view>
@@ -59,7 +60,8 @@
 </template>
 
 <template id="a">
-    <div class="colorR">这是一个vue的路由的A</div>
+    <div class="colorR">这是一个vue的路由的A
+    </div>
 </template>
 
 <template id="b">
@@ -119,14 +121,26 @@
     // 或者，只是一个组件配置对象。
     // 我们晚点再讨论嵌套路由。
     const routes = [
-        { path: '/foo', components: Foo,
+        {
+          path: '/foo', components: Foo,
           children:[
                 {
-                    path: '/foo/frame', component: childCom
+                    path: '/foo/name/:userId',name:"foo/name",
+                    component: childCom
                 },
             ],
         },
-        { path: '/bar', components: Bar }
+        {
+            path: '/bar',
+            components: {
+                a:{
+                    template:"#a",
+                },
+                b:{
+                    template:"#b",
+                },
+            }
+        }
     ]
 
     // 3. 创建 router 实例，然后传 `routes` 配置
@@ -139,9 +153,9 @@
     // 记得要通过 router 配置参数注入路由，
     // 从而让整个应用都有路由功能
     const app = new Vue({
+        el:"#app",
         router
-    }).$mount('#app')
-
+    }).$mount('#app');
     // 现在，应用已经启动了！
 </script>
 </body>
