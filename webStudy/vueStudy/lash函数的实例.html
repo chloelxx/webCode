@@ -3,11 +3,14 @@
 <head>
     <meta charset="utf-8">
     <title>Vue 测试实例 - 菜鸟教程(runoob.com)</title>
-    <script src="https://cdn.bootcss.com/vue/2.2.2/vue.min.js"></script>
-    <script src="https://unpkg.com/lodash@4.13.1/lodash.min.js"></script>
+    <style>
+        [v-cloak] {
+            display: none;
+        }
+    </style>
 </head>
 <body>
-<div id="app">
+<div id="app" v-cloak>
     <p>input 元素：</p>
     <input v-model="question" placeholder="编辑我……">
     <p>消息是: {{ answer }}</p>
@@ -16,8 +19,10 @@
     <p style="white-space: pre">{{ message2 }}</p>
     <textarea v-model="message2" placeholder="多行文本输入……"></textarea>
 </div>
-
+<script src="https://cdn.bootcss.com/vue/2.2.2/vue.min.js"></script>
+<script src="https://unpkg.com/lodash@4.13.1/lodash.min.js"></script>
 <script>
+
     var vm=new Vue({
         el: '#app',
         data: {

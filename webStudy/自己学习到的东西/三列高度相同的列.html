@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>三列高度相同的列的布局</title>
+    <style>
+         .content{
+             position: relative;
+             width:100%;
+             border:1px solid red;
+             overflow: hidden; /* 是父元素的高度计算子元素的高度*/
+         }
+        .box{
+            width:25%;
+            float:left;
+            padding:20px 20px 520px 20px;
+            background-color: pink;
+            margin-left:20px;
+            padding:20px;
+        }
+        .bottom{
+            position: absolute;
+            bottom: 0;
+            height:20px;
+            margin-left: -20px;
+            width:25%;
+        }
+    </style>
+</head>
+<body>
+<div style="margin: 20px 10px;">
+    <p>sdfg</p>
+</div>
+<div style="margin:20px 0;border:1px solid red;width: 100px">
+    <p style="margin:20px;">
+        外边距的叠加
+    </p>
+  <!--
+  display: inline-block
+  <span style="margin:20px;display: inline-block">
+        外边距的叠加
+    </span>-->
+</div>
+   <div class="content">
+       <div class="box">
+           Burning
+           专辑：Not Going Under
+           歌手：Maria Arredondo
+           来源：我喜欢的音乐
+           Passion is sweet
+           激情是甜蜜的
+           Love makes weak
+           爱却带来脆弱
+           You said you cherished freedom
+           你曾说自由至上
+           so You refuse to let it go
+           因此你不愿被束缚
+           Follow your fate
+           跟随你的命运
+           Love and hate
+           爱恨情仇
+           Never fail to seize the day
+           决不失去每一天
+           don't give yourself away .
+           但不要放弃你自己
+           Oh when the night falls
+           哦 当夜晚降临
+           And your all alone
+           你孤身一人
+           In your deepest sleep
+           在你沉睡之时
+           what Are you dreaming of
+           你梦见了什么
+           <div class="bottom">
+
+           </div>
+       </div>
+       <div class="box">
+           你孤身一人
+           In your deepest sleep
+           在你沉睡之时
+           what Are you dreaming of
+           <div class="bottom">
+
+           </div>
+       </div>
+       <div class="box">
+           在你沉睡之时
+           what Are you dreaming of
+           <div class="bottom">
+
+           </div>
+       </div>
+   </div>
+</body>
+</html>

@@ -71,7 +71,7 @@
     <!--点击按钮时设置vue实例特性showModal的值为true-->
     <button id="show-modal" @click="showM()">show modal</button>
     <!--modal是自定义的一个插件，插件的特性show绑定vue实例的showModal特性-->
-    <modal v-show="showModal"  @on-result-change="onResultChange" >
+    <modal v-show="showModal"  @on-result-change="onResultChange">
         <!--替换modal插件中slot那么为header的内容-->
         <h3 slot="header">Custom Header</h3>
     </modal>

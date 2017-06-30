@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>css的BFC的理解的Demo</title>
+    <style>
+        body {
+            padding:0;margin: 0; text-align: center;
+            /*width:400px;*/
+        }
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        .container {
+            width: 100%;
+            height: 1000px;
+        }
+
+        .content1{
+            background: yellowgreen;
+            width: auto;
+            height: 100px;
+            padding-left: 100px;
+        }
+
+        .content2 {
+            background: gold;
+            width: 100%;
+            height: 100px;
+            padding-left: 100px;
+        }
+
+        .wrapper {margin:30px;width: 450px;border:1px solid red;}
+        .small-box {width: 50px;height: 50px;margin: 10px;background: #9cc;}
+        .middle-box {width: 100px;height: 100px;margin: 20px;background: #99c;}
+        .big-box {width: 120px;height: 120px;margin: 20px;background: #33e;}
+        .floatL {float: left;}
+        .floatR {float: right;}
+        .clear {clear: both;}
+        .posA {position: absolute;}
+        .overHid{overflow: hidden;}
+        .red {background: #f00;}
+        .green {background: #0f0;}
+        .blue {background: #00f;}
+    </style>
+</head>
+<body>
+<div class="wrapper overHid">
+    <div class="big-box blue">non-float</div>
+    <div class="middle-box green floatL">
+        <div class="small-box red"></div>
+        float left
+    </div>
+</div>
+<hr>
+<div class="wrapper overHid">
+    <div class="big-box">non-float</div>
+    <div class="middle-box green floatL">float left</div>
+    <div class="middle-box red">non-clear</div>
+</div>
+
+<div style="margin:20px;">
+    <div style="padding:1px;margin:10px;"></div>
+    <div style="margin:30px;">哈哈哈</div>
+</div>
+<div style="margin: 20px;border: 1px solid #000;">
+    <p style="margin: 10px;border: 1px solid red;">sdfsdf</p>
+</div>
+<div style="min-height: 0;height:auto;margin:20px;width:300px;">
+     <div style="margin:10px;">
+         一个 ‘height’ 为 ‘auto’ 并且 ‘min-height’ 为 ‘0’的常规文档流元素的
+         margin-bottom 会与其最后一个常规文档流子元素的 margin-bottom
+         折叠，条件为父元素不包含 padding 和 border ，子元素的 margin-bottom 不与包含 clearance 的 margin-top 折叠。
+     </div>
+</div>
+<div style="margin:30px;height:auto;min-height: 0;">
+    <!--一个不包含border-top、border-bottom、padding-top、padding-bottom的常规文档流元素，并且其 ‘height’ 为 0 或 ‘auto’，
+    ‘min-height’ 为 ‘0’，其里面也不包含行盒(line box)，其自身的 margin-top 和 margin-bottom 会折叠。-->
+    <p style="padding:1px;"></p>
+    <span></span>
+</div>
+<div class="container">
+    <div class="content1">
+
+    </div>
+    <div class="content2">
+
+    </div>
+</div>
+</body>
+</html>
