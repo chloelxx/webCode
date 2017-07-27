@@ -21,7 +21,7 @@ module.exports = {
     output: {
         path: path.join(__dirname, 'news_html'), // 输出目录的配置，模板、样式、脚本、图片等资源的路径配置都相对于它
         publicPath: '', // 模板、样式、脚本、图片等资源对应的server上的路径
-        filename: 'js/[name]-[chunkhash].js', // 每个页面对应的主js的生成配置
+        filename: 'js/common-[chunkhash].js', // 每个页面对应的主js的生成配置
         chunkFilename: 'js/[id].chunk.js' // chunk生成的配置
     },
     module: {
@@ -70,7 +70,7 @@ module.exports = {
             chunks: ['index', 'list', 'about'], // 提取哪些模块共有的部分
             minChunks: 3 // 提取至少3个模块共有的部分
           }),*/
-        new ExtractTextPlugin('css/[name]-[contentHash].css'), // 单独使用link标签加载css并设置路径，相对于output配置中的publickPath
+        new ExtractTextPlugin('css/common-[contentHash].css'), // 单独使用link标签加载css并设置路径，相对于output配置中的publickPath
 
         // HtmlWebpackPlugin，模板生成相关的配置，每个对于一个页面的配置，有几个写几个
         // new HtmlWebpackPlugin({ // 根据模板插入css/js等生成最终HTML
