@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vertial-align深入理解分析</title>
+    <style type="text/css">
+        .ctn-block{
+            background-color: #bbb;
+        }
+        .ctn-block .child {
+            display: inline-block;
+            width: 100px;
+            background-color: aliceblue;
+        }
+        .ctn-block .child-1 {
+            height: 300px;
+
+        }
+        .ctn-block .child-2 {
+            height: 200px;
+            vertical-align: middle;
+        }
+        .ctn-block .child-3 {
+            height: 100px;
+        }
+    </style>
+</head>
+<body>
+<div class="ctn-block">
+    <div class="child child-1"><span>所得税法</span></div>
+    <div class="child child-2"></div>
+    <div class="child child-3"></div>
+</div>
+</body>
+</html>
