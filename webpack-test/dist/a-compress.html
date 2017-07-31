@@ -5,20 +5,23 @@
     <title>webpack打包实例</title>
     <!--这个vue的单页面的实例的js不能放在head中，原因暂时不详-->
 
-</head>
+<script type="text/javascript" src="/asset/js/index-compress.js"></script><script type="text/javascript" src="/asset/js/main-compress.js"></script><script type="text/javascript" src="/asset/js/a-compress.js"></script></head>
 <body>
-Fri May 19 2017 16:27:26 GMT+0800 (中国标准时间)
+Wed Jul 26 2017 21:35:25 GMT+0800 (中国标准时间)
 
-  files : {"publicPath":"","chunks":{"main":{"size":192355,"entry":"js/main-compress.js","hash":"c2fca75aa51b8982e000","css":[]},"index":{"size":246182,"entry":"js/index-compress.js","hash":"251f1d06452606781018","css":[]},"a":{"size":728652,"entry":"js/a-compress.js","hash":"8548cee64aed748d5f99","css":[]}},"js":["js/main-compress.js","js/index-compress.js","js/a-compress.js"],"css":[]}
+  files : {"publicPath":"/asset/","chunks":{"index":{"size":541427,"entry":"/asset/js/index-compress.js","hash":"d04d2f23fa251155a25f","css":[]},"main":{"size":192948,"entry":"/asset/js/main-compress.js","hash":"4c495911a15bc7dd953e","css":[]},"a":{"size":544961,"entry":"/asset/js/a-compress.js","hash":"ba6ee93aca3fb0749108","css":[]}},"js":["/asset/js/index-compress.js","/asset/js/main-compress.js","/asset/js/a-compress.js"],"css":[]}
 
-  options : {"template":"E:\\webCode\\webpack-test\\node_modules\\html-webpack-plugin\\lib\\loader.js!E:\\webCode\\webpack-test\\a.html","filename":"a-compress.html","hash":false,"inject":false,"compile":true,"favicon":false,"minify":false,"cache":true,"showErrors":true,"chunks":"all","excludeChunks":[],"title":"this is a webpack","xhtml":false,"date":"2017-05-19T08:27:26.483Z"}
+  options : {"template":"D:\\webCode\\webCode\\webpack-test\\node_modules\\html-webpack-plugin\\lib\\loader.js!D:\\webCode\\webCode\\webpack-test\\a.html","filename":"a-compress.html","hash":false,"inject":"head","compile":true,"favicon":false,"minify":false,"cache":true,"showErrors":true,"chunks":"all","excludeChunks":[],"title":"this is a webpack","xhtml":false,"date":"2017-07-26T13:35:25.292Z"}
 
 <h1>欢迎来到webpack API</h1>
 <div id="test"></div>
 <button class="btn" onclick="showFrame()">show</button>
 <div id="show"></div>
-<script type="text/javascript" src="js/main-compress.js"></script>
+<!-- <script type="text/javascript" src="/asset/js/main-compress.js"></script> -->
 <!--<script type="text/javascript" src="bundle.js"></script>-->
-<script type="text/javascript" src="js/a-compress.js"></script>
+<!-- <script type="text/javascript" src="/asset/js/a-compress.js"></script> -->
+<!--热替换的js的加载-->
+<script type="text/javascript" src="asset/js/main-compress.js"></script>
+<script type="text/javascript" src="asset/js/a-compress.js"></script>
 </body>
 </html>
