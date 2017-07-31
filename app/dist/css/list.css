@@ -105,6 +105,9 @@ ul.classify-meun li:hover,ul.classify-meun li:focus,ul.classify-meun li:active{
     overflow: hidden;
     min-height: 42px;
 }
+.hotComment{
+    padding: 0.15rem;border-bottom: 1px solid #F0F0F0;
+}
 .hotComment li{
     display: block;
 }
@@ -241,13 +244,12 @@ span{
 }
 .countMemberTop{
     background-color: #F0F0F0;
-    padding: 0.1rem;
+    padding: 10px;
     position: relative;
     overflow: hidden;
-    height: 0.49rem;
-    line-height: 0.49rem;
-    width:100%;
-    /*box-sizing: border-box;*/
+    height: 49px;
+    line-height: 29px;
+    box-sizing: border-box;
 }
 .countMemberTop>div>a{
     width: 0.29rem;
@@ -257,4 +259,17 @@ span{
 }
 .sumTop{
 
+}
+.headerImg{
+    width:0.29rem;height:0.29rem;border-radius: 50%;display: inline-block;
+}
+.thumbnailHidden {
+    width: 30%;
+    display: inline-block;
+    padding-right:1%;
+    overflow: hidden;
+    position: relative;
+}
+.thumbnailHidden>img {
+    width: 100%;
 }
