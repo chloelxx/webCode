@@ -80,16 +80,6 @@ function jugePhoneType() {
     }
 }
 
-function videoplay() {
-    var vid = $("#content video");
-    console.log("vid", vid);
-    for (var i = 0; i < vid.length; i++) {
-        console.log(i)
-        $(vid[i])[0].pause();
-    }
-    this.play();
-}
-
 function personPage(uuid, that) {
     event.stopPropagation();
     console.log(uuid);
@@ -120,6 +110,25 @@ function configIP() {
     }
 }
 
+window.videoplay = function() {
+    var e = event || window.event;
+    var vid = $("#content video");
+    console.log("target==", $(e.target)[0]);
+    if (!$(e.target)[0].paused) {
+        var vid = $(e.target).siblings("video");
+        console.log("vid1==", vid);
+        for (var i = 0; i < vid.length; i++) {
+            $(vid[i])[0].pause();
+        }
+    }
+    if (!$(e.target)[0].paused) {
+        var vid = $(e.target).parent().siblings().find("video");
+        console.log("vid2==", vid);
+        for (var i = 0; i < vid.length; i++) {
+            $(vid[i])[0].pause();
+        }
+    }
+}
 window.comment = {};
 (function(self, $) {
     function request(url, fn) {
@@ -139,6 +148,26 @@ window.comment = {};
                     fn(data)
                 }
             }
+        })
+    }
+
+    function promiseRequst(url) {
+        return new Promise(function(resolve, reject) {
+            $.ajax({
+                url: url,
+                method: "GET",
+                contentType: "application/json",
+                beforeSend: function(xhr) {
+                    xhr.setRequestHeader("If-Modified-Since", "0");
+                },
+                error: function() {
+                    reject(errorMsg);
+                    Tips("网络出错,请稍后重试");
+                },
+                success: function(data) {
+                    resolve(data);
+                }
+            })
         })
     }
 
@@ -226,6 +255,8 @@ window.comment = {};
                 longPress: true,
                 isComment: false,
                 communityInfo: {},
+              showHotCommentBar: false,
+              showAllCommentBar:false,
             },
             mounted: function() {
                 var cxtURL, that = this;
@@ -241,7 +272,11 @@ window.comment = {};
                     console.log("sum==", sum)
                     this.allCommentSum = parseInt(sum);
                     var info = blemobi.getCommunityInfo();
-                    that.communityInfo = JSON.parse(info);
+                    if ($.isEmptyObject(JSON.parse(info))) {
+                        that.communityInfo = null;
+                    } else {
+                        that.communityInfo = JSON.parse(info);
+                    }
                     console.log("communitInfo==", JSON.parse(info));
                 } else {
                     setupWebViewJavascriptBridge(function(bridge) {
@@ -254,8 +289,12 @@ window.comment = {};
                             that.allCommentSum = data;
                         })
                         bridge.callHandler('getCommunityInfo', {}, function(data) {
-                            that.communityInfo = JSON.parse(data);
-                            alert(that.communityInfo)
+                            console.log("info data==", data);
+                            if ($.isEmptyObject(data)) {
+                                that.communityInfo = null;
+                            } else {
+                                that.communityInfo = data;
+                            }
                             console.log("communitInfo==", that.communityInfo);
                         })
                         bridge.registerHandler('comment.vm.votedNewsSuccess', function(data, votedNewsSuccess) {
@@ -279,6 +318,7 @@ window.comment = {};
                     console.log("video");
                     $(vid[i])[0].pause();
                 }
+
             },
             methods: {
                 stopPlay: function() {
@@ -303,7 +343,7 @@ window.comment = {};
                         }
                     }
                     var comURL = configIP() + "/comment/guest/loadcomment?count=20&offset=0&sort=" + this.sortComment.sort + "&" + this.comment;
-                    request(comURL, function(data) {
+                    /*request(comURL, function(data) {
                         console.log("data", data)
                         if (data.comments && data.comments.length > 0) {
                             that.items = data.comments;
@@ -315,6 +355,23 @@ window.comment = {};
                                     $("#loadMore").html("已加载全部");
                                 }
                                 // setPosition()
+                            })
+                        } else {
+                            that.isComment = true;
+                            Vue.nextTick(function() {})
+                        }
+                    })*/
+                    promiseRequst(comURL).then(function(data) {
+                        console.log("data", data)
+                        if (data.comments && data.comments.length > 0) {
+                            that.items = data.comments;
+                            that.offset = 20;
+                            Vue.nextTick(function() {
+                                setImgWidht()
+                                if (data.comments.length != 20) {
+                                    $("#loadMore").html("已加载全部");
+                                }
+
                             })
                         } else {
                             that.isComment = true;
@@ -357,7 +414,7 @@ window.comment = {};
                     that.items = [];
                     var u = "http://192.168.5.105:80/v1/news/guest/newsfeed/html?id=24",
                         uu = "http://192.168.5.105/comment/guest/loadcomment?count=2&postid=19&offset=0&uuid=1493048811581296819";
-                    /* request(urlObj.htmlurl, function (data) {
+                    /*** request(urlObj.htmlurl, function (data) {
                          console.log("data", data)
                          that.context = data;
                          var content = data;
@@ -394,20 +451,106 @@ window.comment = {};
                                  })
                              })
                          })
-                     })*/
-                    $("#content").load(urlObj.htmlurl, function(data) {
-                        console.log("data==", data)
+                     })***/
+                    /***  $("#content").load(urlObj.htmlurl, function(data) {
+                           console.log("data==", data)
+                           that.context = data;
+                           var content = data;
+                           var img = new Image();
+                           if (content != "") {
+                               if (content.indexOf("<img") != -1) {
+                                   console.log(11)
+                                   content.replace(/<img[^>]*[^-_]src\s*=\s*['\"]([^'\"]+)['\"][^>]*>/gi, function(match, capture) {
+                                       console.log(11)
+                                       console.log("match,capture", capture);
+                                       that.contentImg.push({ src: capture });
+                                       //return '<img data-lazy="'+capture+'">';
+                                   })
+                               }
+                           }
+                           console.log("img==", that.contentImg);
+                           Vue.nextTick(function() {
+                               $("#content img").each(function(index, _this) {
+                                   var showImgURL = window.location.origin + "/news_html/showImg.html";
+                                   $(_this).click(function() {
+                                       that.imageList = that.contentImg;
+                                       var jsStr = JSON.stringify(that.imageList);
+                                       if (jugePhoneType() == 1) {
+                                           blemobi.jumpToShowImgPage(showImgURL, jsStr, index);
+                                       } else {
+                                           setupWebViewJavascriptBridge(function(bridge) {
+                                               bridge.callHandler('jumpToShowImgPage', {
+                                                   "url": showImgURL,
+                                                   "images": jsStr,
+                                                   "index": index
+                                               }, function(response) {})
+                                           })
+                                       }
+
+                                   })
+                               })
+                           })
+                       })***/
+                    var hotURL = configIP() + "/comment/guest/loadcomment?count=20&offset=0&sort=3&" + urlObj.comment;
+                    /**
+                     *  request(hotURL, function(data) {
+                          if (data.comments && data.comments.length > 0) {
+                              that.hotItems = data.comments;
+                              Vue.nextTick(function() {
+                                  setImgWidht()
+                                      //setPosition()
+                              })
+                          }
+                      })
+                     */
+                    var comURL = configIP() + "/comment/guest/loadcomment?count=20&offset=0&" + urlObj.comment;
+                    /**
+                     *  request(comURL, function(data) {
+                               console.log("data", data)
+                               if (data.comments && data.comments.length > 0) {
+                                   that.items = data.comments;
+                                   that.offset = 20;
+
+                                   Vue.nextTick(function() {
+                                       setImgWidht()
+                                       if (data.comments.length != 20) {
+                                           $("#loadMore").html("已加载全部");
+                                       }
+                                       //setPosition()
+                                   })
+                               } else {
+                                   that.isComment = true;
+                                   Vue.nextTick(function() {})
+                               }
+                           })
+                     */
+                    /**
+                     *@note   获取点赞的用户列表,游客模式
+                     *@path   /v1/news/guest/vote/users
+                     *@method GET
+                     *@param  id      帖子ID
+                     *@param  offset  偏移, 为上次返回的数目.默认0
+                     *@param  count   每次查询条数, 默认10, 最大50
+                     *@return  成功返回 PNewsVoteUserList,失败返回PResult
+                     */
+                    var voteURL = configIP() + "/v1/news/guest/vote/users?offset=0&count=6&id=" + urlObj.postid;
+                    /**  request(voteURL, function(data) {
+                          console.log("data==", data);
+                          if (data.list) {
+                              that.voteSum = data.total;
+                              that.voteData = data.list;
+                          }
+                      })*/
+
+                    promiseRequst(urlObj.htmlurl).then(function(data) {
+                      console.log("正文")
                         that.context = data;
                         var content = data;
                         var img = new Image();
                         if (content != "") {
                             if (content.indexOf("<img") != -1) {
-                                console.log(11)
                                 content.replace(/<img[^>]*[^-_]src\s*=\s*['\"]([^'\"]+)['\"][^>]*>/gi, function(match, capture) {
-                                    console.log(11)
-                                    console.log("match,capture", capture);
-                                    that.contentImg.push({ src: capture });
-                                    //return '<img data-lazy="'+capture+'">';
+                                    that.contentImg.push({ src: capture,originSrc:"" });
                                 })
                             }
                         }
@@ -432,10 +575,19 @@ window.comment = {};
 
                                 })
                             })
+                          that.showHotCommentBar=true;
+                          that.showAllCommentBar = true;
                         })
-                    })
-                    var hotURL = configIP() + "/comment/guest/loadcomment?count=20&offset=0&sort=3&" + urlObj.comment;
-                    request(hotURL, function(data) {
+                      return promiseRequst(voteURL);
+                    }).then(function(data) {
+                        console.log("点赞列表");
+                        if (data.list) {
+                            that.voteSum = data.total;
+                            that.voteData = data.list;
+                        }
+                        return promiseRequst(hotURL)
+                    }).then(function(data) {
+                      console.log("热门评论");
                         if (data.comments && data.comments.length > 0) {
                             that.hotItems = data.comments;
                             Vue.nextTick(function() {
@@ -443,41 +595,23 @@ window.comment = {};
                                     //setPosition()
                             })
                         }
-                    })
-                    var comURL = configIP() + "/comment/guest/loadcomment?count=20&offset=0&" + urlObj.comment;
-                    request(comURL, function(data) {
-                            console.log("data", data)
-                            if (data.comments && data.comments.length > 0) {
-                                that.items = data.comments;
-                                that.offset = 20;
+                        return promiseRequst(comURL)
+                    }).then(function(data) {
+                      console.log("全部评论");
+                        if (data.comments && data.comments.length > 0) {
+                            that.items = data.comments;
+                            that.offset = 20;
 
-                                Vue.nextTick(function() {
-                                    setImgWidht()
-                                    if (data.comments.length != 20) {
-                                        $("#loadMore").html("已加载全部");
-                                    }
-                                    //setPosition()
-                                })
-                            } else {
-                                that.isComment = true;
-                                Vue.nextTick(function() {})
-                            }
-                        })
-                        /**
-                         *@note   获取点赞的用户列表,游客模式
-                         *@path   /v1/news/guest/vote/users
-                         *@method GET
-                         *@param  id      帖子ID
-                         *@param  offset  偏移, 为上次返回的数目.默认0
-                         *@param  count   每次查询条数, 默认10, 最大50
-                         *@return  成功返回 PNewsVoteUserList,失败返回PResult
-                         */
-                    var voteURL = configIP() + "/v1/news/guest/vote/users?offset=0&count=6&id=" + urlObj.postid;
-                    request(voteURL, function(data) {
-                        console.log("data==", data);
-                        if (data.list) {
-                            that.voteSum = data.total;
-                            that.voteData = data.list;
+                            Vue.nextTick(function() {
+                                setImgWidht()
+                                if (data.comments.length != 20) {
+                                    $("#loadMore").html("已加载全部");
+                                }
+                                //setPosition()
+                            })
+                        } else {
+                            that.isComment = true;
+                            Vue.nextTick(function() {})
                         }
                     })
                     $("#cover").click(function(e) {
@@ -551,6 +685,9 @@ window.comment = {};
                     }
                     that.allCommentSum = that.allCommentSum - 1;
                     that.longPress = true;
+                  if(that.items.length==0){
+                    that.isComment = true;
+                  }
                     Vue.nextTick(function() {
                         setImgWidht();
                     })
@@ -700,7 +837,21 @@ window.comment = {};
                      *@return 成功返回PCommentExt,失败返回PResult
                      */
                     var url = configIP() + "/v1.7/comment/guest/detail?id=" + id + "&uuid=" + that.uuid;
-                    request(url, function(data) {
+                    /***              request(url, function(data) {
+                                      if (data && !data.code) {
+                                          if (that.sortComment.sort == 1 && that.items.length < 20) {
+                                              var len = that.items.length;
+                                              that.items.splice(len, 0, data);
+                                          } else {
+                                              that.items.splice(0, 0, data);
+                                          }
+                                          that.allCommentSum = that.allCommentSum + 1;
+                                          Vue.nextTick(function() {
+                                              setImgWidht();
+                                          })
+                                      }
+                                  })*/
+                    promiseRequst(url).then(function(data) {
                         if (data && !data.code) {
                             if (that.sortComment.sort == 1 && that.items.length < 20) {
                                 var len = that.items.length;
@@ -708,6 +859,10 @@ window.comment = {};
                             } else {
                                 that.items.splice(0, 0, data);
                             }
+                          if(that.items.length<=20){
+                              $("#loadMore").html("已加载全部评论");
+                          }
+                            that.isComment = false;
                             that.allCommentSum = that.allCommentSum + 1;
                             Vue.nextTick(function() {
                                 setImgWidht();
@@ -787,7 +942,24 @@ window.comment = {};
                          *@return 成功返回PCommentExt,失败返回PResult
                          */
                     var url = configIP() + "/v1.7/comment/guest/detail?id=" + id + "&uuid=" + that.uuid;
-                    request(url, function(data) {
+                    /*  request(url, function(data) {
+                          if (data) {
+                              var obj = $.extend({}, data);
+                              var obj1 = $.extend({}, data);
+                              for (var i = 0; i < that.hotItems.length; i++) {
+                                  if (that.hotItems[i].id == id) {
+                                      that.hotItems.splice(i, 1, obj);
+                                  }
+                              }
+                              for (var i = 0; i < that.items.length; i++) {
+                                  if (that.items[i].id == id) {
+                                      that.items.splice(i, 1, obj1);
+                                      console.log("that.items==")
+                                  }
+                              }
+                          }
+                      })*/
+                    promiseRequst(url).then(function(data) {
                         if (data) {
                             var obj = $.extend({}, data);
                             var obj1 = $.extend({}, data);
@@ -841,8 +1013,9 @@ window.comment = {};
                     that.imageList = [];
                     var img = $(e.currentTarget).parent().find("img");
                     for (var i = 0; i < img.length; i++) {
-                        that.imageList.push({ src: $(img[i]).attr("src") });
+                        that.imageList.push({ src: $(img[i]).attr("src"), originSrc: $(img[i]).attr("data-src"), size: $(img[i]).attr("data-size") });
                     }
+                    console.log("images==", that.imageList);
                     var showImgURL = window.location.origin + "/news_html/showImg.html";
                     var jsStr = JSON.stringify(that.imageList);
                     if (jugePhoneType() == 1) {
@@ -866,12 +1039,30 @@ window.comment = {};
                 },
                 loadMoreCom: function() {
                     var that = this;
-                    var
-                    //                           comURL="http://192.168.5.105/comment/guest/loadcomment?count=20&postid="+urlObj.postid+"&uuid="+urlObj.uuid+"&offset="+that.offset,
-                        uu = "http://192.168.5.105/comment/guest/loadcomment?count=2&postid=19&offset=0&uuid=1493048811581296819",
-                        url = configIP() + "/comment/guest/loadcomment?count=20&offset=" + that.offset + "&sort=" + that.sortComment.sort + "&" + that.comment;
-                    //uu1="http://192.168.5.105/comment/guest/loadcomment?count=2&offset=0&uuid=1493051392875521593&postid=36";
-                    request(url, function(data) {
+                    var url = configIP() + "/comment/guest/loadcomment?count=20&offset=" + that.offset + "&sort=" + that.sortComment.sort + "&" + that.comment;
+                    /* request(url, function(data) {
+                         if (data && data.comments) {
+                             console.log("data==", data);
+                             if (!that.items) {
+                                 that.items = [];
+                                 console.log(that.items)
+                             }
+                             that.items = that.items.concat(data.comments);
+                             Vue.nextTick(function() {
+                                 setImgWidht();
+                                 if (data.comments.length != 20) {
+                                     console.log("dddd")
+                                     $("#loadMore").html("已加载全部");
+                                 }
+                             })
+                             that.offset = that.offset + 20;
+                         } else {
+                             Vue.nextTick(function() {
+                                 $("#loadMore").html("已加载全部");
+                             })
+                         }
+                     })*/
+                    promiseRequst(url).then(function(data) {
                         if (data && data.comments) {
                             console.log("data==", data);
                             if (!that.items) {
