@@ -100,13 +100,15 @@ function configIP() {
     if (url == "sz1-test-sep-static.oss-cn-shenzhen.aliyuncs.com") {
         return "http://lb1qa1sep.blemobi.com:80";
     } else if (url === 'cdn-static.bb-app.cn') {
-        return "http://sep.miwutech.com";
+        return "https://sep.miwutech.com";
     } else if (url === 'hz1-prod-sep-static.oss-cn-hangzhou.aliyuncs.com') {
-        return "http://sep.miwutech.com";
+        return "https://sep.miwutech.com";
     } else if (url == "192.168.7.207:82") {
         return "http://192.168.5.105";
+    } else if (url == "cdn2.bb-app.cn") {
+        return "https://sep.miwutech.com";
     } else {
-        return "http://sep.miwutech.com"
+        return "https://sep.miwutech.com"
     }
 }
 
@@ -128,6 +130,7 @@ window.videoplay = function() {
             $(vid[i])[0].pause();
         }
     }
+    console.log("test");
 }
 window.comment = {};
 (function(self, $) {
@@ -186,14 +189,27 @@ window.comment = {};
     function parseAppURL(url, that) {
         var arr = url.split("&bodyurl=");
         var UUID = arr[0].split("?");
-        var postid = arr[0].split(/&|=/);
+        console.log("urpsdf", UUID);
         var obj = {
             htmlurl: arr[1],
-            comment: UUID[1],
-            postid: postid[3],
-            uuid: postid[1]
+            comment: "",
+            postid: "",
+            uuid: ""
         }
-        that.comment = UUID[1];
+        UUID[1].replace(/uuid=[0-9]*/i, function(match, p) {
+            console.log(match)
+            var uuid = match.substring(match.indexOf("uuid=") + 5);
+            obj.uuid = uuid;
+            console.log(uuid);
+        })
+        UUID[1].replace(/postid=[0-9]*/i, function(match, p) {
+            console.log(match)
+            var postid = match.substring(match.indexOf("postid=") + 7);
+            obj.postid = postid;
+            console.log(postid);
+        })
+        obj.comment = "uuid=" + obj.uuid + "&postid=" + obj.postid
+        that.comment = obj.comment;
         return obj;
     }
 
@@ -254,9 +270,9 @@ window.comment = {};
                 lasttime: 0,
                 longPress: true,
                 isComment: false,
-                communityInfo: {},
-              showHotCommentBar: false,
-              showAllCommentBar:false,
+                communityInfo: null,
+                showHotCommentBar: false,
+                showAllCommentBar: false,
             },
             mounted: function() {
                 var cxtURL, that = this;
@@ -268,6 +284,7 @@ window.comment = {};
                     console.log("parseURL==", parseURL);
                     this.getAppURLData(parseURL);
                     that.uuid = parseURL.uuid;
+                    console.log("uuid==", that.uuid);
                     var sum = blemobi.getAppVoteData();
                     console.log("sum==", sum)
                     this.allCommentSum = parseInt(sum);
@@ -288,15 +305,7 @@ window.comment = {};
                         bridge.callHandler('getAppVoteData', {}, function(data) {
                             that.allCommentSum = data;
                         })
-                        bridge.callHandler('getCommunityInfo', {}, function(data) {
-                            console.log("info data==", data);
-                            if ($.isEmptyObject(data)) {
-                                that.communityInfo = null;
-                            } else {
-                                that.communityInfo = data;
-                            }
-                            console.log("communitInfo==", that.communityInfo);
-                        })
+
                         bridge.registerHandler('comment.vm.votedNewsSuccess', function(data, votedNewsSuccess) {
                             that.votedNewsSuccess(data);
                         })
@@ -311,6 +320,15 @@ window.comment = {};
                             //   alert(data);
                             that.stopPlay();
                         })
+                        bridge.callHandler('getCommunityInfo', {}, function(data) {
+                            console.log("info data==", data);
+                            if ($.isEmptyObject(data)) {
+                                that.communityInfo = null;
+                            } else {
+                                that.communityInfo = data;
+                            }
+                            console.log("communitInfo==", that.communityInfo);
+                        })
                     })
                 }
                 var vid = $("video");
@@ -318,7 +336,6 @@ window.comment = {};
                     console.log("video");
                     $(vid[i])[0].pause();
                 }
-
             },
             methods: {
                 stopPlay: function() {
@@ -543,14 +560,14 @@ window.comment = {};
                       })*/
 
                     promiseRequst(urlObj.htmlurl).then(function(data) {
-                      console.log("正文")
+                        console.log("正文")
                         that.context = data;
                         var content = data;
                         var img = new Image();
                         if (content != "") {
                             if (content.indexOf("<img") != -1) {
                                 content.replace(/<img[^>]*[^-_]src\s*=\s*['\"]([^'\"]+)['\"][^>]*>/gi, function(match, capture) {
-                                    that.contentImg.push({ src: capture,originSrc:"" });
+                                    that.contentImg.push({ src: capture, originSrc: "" });
                                 })
                             }
                         }
@@ -575,10 +592,13 @@ window.comment = {};
 
                                 })
                             })
-                          that.showHotCommentBar=true;
-                          that.showAllCommentBar = true;
+                            that.showHotCommentBar = true;
+                            console.log("content", $("#content p"));
+                            console.log("showHotCommentBar==", that.showHotCommentBar);
+                            that.showAllCommentBar = true;
+                            console.log("showAllCommentBar==", that.showHotCommentBar);
                         })
-                      return promiseRequst(voteURL);
+                        return promiseRequst(voteURL);
                     }).then(function(data) {
                         console.log("点赞列表");
                         if (data.list) {
@@ -587,7 +607,7 @@ window.comment = {};
                         }
                         return promiseRequst(hotURL)
                     }).then(function(data) {
-                      console.log("热门评论");
+                        console.log("热门评论");
                         if (data.comments && data.comments.length > 0) {
                             that.hotItems = data.comments;
                             Vue.nextTick(function() {
@@ -597,7 +617,7 @@ window.comment = {};
                         }
                         return promiseRequst(comURL)
                     }).then(function(data) {
-                      console.log("全部评论");
+                        console.log("全部评论");
                         if (data.comments && data.comments.length > 0) {
                             that.items = data.comments;
                             that.offset = 20;
@@ -655,7 +675,6 @@ window.comment = {};
                         blemobi.sendDeleteMsgToApp(list.id, index, isHot.toString());
                     } else {
                         setupWebViewJavascriptBridge(function(bridge) {
-                            alert("ios");
                             bridge.callHandler('sendDeleteMsgToApp', { id: list.id, index: index, isHot: isHot }, function(res) {
                                 that.deleteSuccess(res.id, res.index, res.isHot)
                             })
@@ -685,9 +704,9 @@ window.comment = {};
                     }
                     that.allCommentSum = that.allCommentSum - 1;
                     that.longPress = true;
-                  if(that.items.length==0){
-                    that.isComment = true;
-                  }
+                    if (that.items.length == 0) {
+                        that.isComment = true;
+                    }
                     Vue.nextTick(function() {
                         setImgWidht();
                     })
@@ -859,9 +878,9 @@ window.comment = {};
                             } else {
                                 that.items.splice(0, 0, data);
                             }
-                          if(that.items.length<=20){
-                              $("#loadMore").html("已加载全部评论");
-                          }
+                            if (that.items.length <= 20) {
+                                $("#loadMore").html("已加载全部评论");
+                            }
                             that.isComment = false;
                             that.allCommentSum = that.allCommentSum + 1;
                             Vue.nextTick(function() {
