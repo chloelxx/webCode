@@ -11,11 +11,10 @@
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0" />
     <meta charset="UTF-8">
     <title>资讯详情页</title>
-    <link rel="stylesheet" href="https://cdn.bootcss.com/Swiper/3.4.2/css/swiper.min.css">
 </head>
 
 <body>
-    <div id="app" onload="foridden()">
+    <div id="app">
         <div class="text16 padding" id="content" v-html="context" v-cloak>
         </div>
         <!--点赞人数列表-->
@@ -32,7 +31,7 @@
             </div>
         </div>
         <!--社区信息-->
-        <div class="countMemberTop text12" v-cloak @click="jumpToCommunity()" v-if="!$.isEmptyObject(communityInfo)" style="background-color: rgba(256,256,256,0.8); border-top:1px solid #F0F0F0;">
+        <div class="countMemberTop text12" v-cloak @click="jumpToCommunity()" v-if="communityInfo" style="background-color: rgba(256,256,256,0.8); border-top:1px solid #F0F0F0;">
             <a class="headerImg" v-if="communityInfo">
                 <img :src="communityInfo.imgUrl" style="width: 100%;height:100%;">
             </a>
@@ -41,7 +40,7 @@
                 <span class="iconImg sumTop"></span>
             </div>
         </div>
-        <div class="hotComment" id="commentBarHot" v-if="hotItems.length">热门评论</div>
+        <div class="hotComment text14" id="commentBarHot" v-cloak v-if="showHotCommentBar && hotItems.length>0">热门评论</div>
         <div class="text14 padding" id="hot" v-cloak v-if="hotItems.length">
             <ol class="comments-items">
                 <li class="bbs-post stairCom" v-for="(list,index) in hotItems">
@@ -64,20 +63,20 @@
                                     <a :class="[list.vote==1 ? 'color7A1AE0':'' ,'text12']">{{list.upvotes}}</a>
                                 </div>
                             </div>
-                            <div class="comment-text">
+                            <div class="comment-text text14">
                                 <p class="detailWord" v-html="splitAtUser(list.text)">
                                     <!--{{list.text}}-->
                                 </p>
                             </div>
                             <div class="comment-img" v-if="list.images&&list.images.list&&list.images.list.length>0">
                                 <div class="oneImg" v-if="list.images.list.length==1" v-for="(img,key) in list.images.list" @click="showImg($event,key)">
-                                    <img :class="[img.ImageAttr.width>img.ImageAttr.high ? 'setHeight':'setWidth']" :src="img.ThumbUrl" :width="img.ImageAttr.width" :height="img.ImageAttr.high">
+                                    <img :class="[img.ImageAttr.width>img.ImageAttr.high ? 'setHeight':'setWidth']" :src="img.ThumbUrl" :data-src="img.MediaOriginUrl?img.MediaOriginUrl:''" :data-size="img.ImageAttr.size" :width="img.ImageAttr.width" :height="img.ImageAttr.high">
                                 </div>
                                 <div class="twoImg" v-if="list.images.list.length==2" v-for="(img,key) in list.images.list" @click="showImg($event,key)">
-                                    <img :class="[img.ImageAttr.width>img.ImageAttr.high ? 'setHeight':'setWidth']" :src="img.ThumbUrl" :width="img.ImageAttr.width" :height="img.ImageAttr.high">
+                                    <img :class="[img.ImageAttr.width>img.ImageAttr.high ? 'setHeight':'setWidth']" :src="img.ThumbUrl" :data-src="img.MediaOriginUrl?img.MediaOriginUrl:''" :data-size="img.ImageAttr.size" :width="img.ImageAttr.width" :height="img.ImageAttr.high">
                                 </div>
                                 <div class="thumbnailHidden" v-if="list.images.list.length>=3" v-for="(img,key) in list.images.list" @click="showImg($event,key)">
-                                    <img :class="[img.ImageAttr.width>img.ImageAttr.high ? 'setHeight':'setWidth']" :src="img.ThumbUrl" :width="img.ImageAttr.width" :height="img.ImageAttr.high">
+                                    <img :class="[img.ImageAttr.width>img.ImageAttr.high ? 'setHeight':'setWidth']" :src="img.ThumbUrl" :data-src="img.MediaOriginUrl?img.MediaOriginUrl:''" :data-size="img.ImageAttr.size" :width="img.ImageAttr.width" :height="img.ImageAttr.high">
                                 </div>
                             </div>
                             <div class="audio" v-if="list.audio">
@@ -120,11 +119,11 @@
             </ol>
         </div>
         <div style="background-color: #F0F0F0;height:0.2rem" v-if="hotItems.length"></div>
-        <div class="hotComment" id="commentBarAll" v-cloak="">
+        <div class="hotComment text14" id="commentBarAll" v-cloak v-show="showAllCommentBar">
             全部评论
             <p style="float: right;" class="color7A1AE0 text12" @click="sortCom()">
                 <span style="vertical-align: middle;">{{sortComment.text}}</span>
-                <span :class="[sortComment.sort?'sortComments':'sortCommentsRe','iconImg']" style="float:right"></span>
+                <span :class="[sortComment.sort?'sortComments':'sortCommentsRe','iconImg']"></span>
             </p>
         </div>
         <div class="allComment padding" v-cloak id="all">
@@ -149,20 +148,20 @@
                                     <a :class="[list.vote==1 ? 'color7A1AE0':'' ,'text12']">{{list.upvotes}}</a>
                                 </div>
                             </div>
-                            <div class="comment-text">
+                            <div class="comment-text text14">
                                 <p class="detailWord" v-html="splitAtUser(list.text)">
                                     <!--{{splitAtUser(list.text)}}-->
                                 </p>
                             </div>
                             <div class="comment-img" v-if="list.images&&list.images.list&&list.images.list.length>0">
                                 <div class="oneImg" v-if="list.images.list.length==1" v-for="(img,key) in list.images.list" @click="showImg($event,key)">
-                                    <img :class="[img.ImageAttr.width>img.ImageAttr.high?'setHeight':'setWidth']" :src="img.MediaUrl" :width="img.ImageAttr.width" :height="img.ImageAttr.high">
+                                    <img :class="[img.ImageAttr.width>img.ImageAttr.high?'setHeight':'setWidth']" :src="img.MediaUrl" :data-size="img.ImageAttr.size" :data-src="img.MediaOriginUrl?img.MediaOriginUrl:''" :width="img.ImageAttr.width" :height="img.ImageAttr.high">
                                 </div>
                                 <div class="twoImg" v-if="list.images.list.length==2" v-for="(img,key) in list.images.list" @click="showImg($event,key)">
-                                    <img :class="[img.ImageAttr.width>img.ImageAttr.high?'setHeight':'setWidth']" :src="img.MediaUrl" :width="img.ImageAttr.width" :height="img.ImageAttr.high">
+                                    <img :class="[img.ImageAttr.width>img.ImageAttr.high?'setHeight':'setWidth']" :src="img.MediaUrl" :data-size="img.ImageAttr.size" :data-src="img.MediaOriginUrl?img.MediaOriginUrl:''" :width="img.ImageAttr.width" :height="img.ImageAttr.high">
                                 </div>
                                 <div class="thumbnailHidden" v-if="list.images.list.length>=3" v-for="(img,key) in list.images.list" @click="showImg($event,key)">
-                                    <img :class="[img.ImageAttr.width>img.ImageAttr.high?'setHeight':'setWidth']" :src="img.MediaUrl" :width="img.ImageAttr.width" :height="img.ImageAttr.high">
+                                    <img :class="[img.ImageAttr.width>img.ImageAttr.high?'setHeight':'setWidth']" :src="img.MediaUrl" :data-size="img.ImageAttr.size" :data-src="img.MediaOriginUrl?img.MediaOriginUrl:''" :width="img.ImageAttr.width" :height="img.ImageAttr.high">
                                 </div>
                             </div>
                             <div class="audio" v-if="list.audio">
@@ -205,7 +204,7 @@
                 <div class="text14 colorGray" style="text-align: center;margin: 0.25px 0rem 0.15rem 0rem;" id="loadMore" @click="loadMoreCom()">加载更多评论</div>
             </ol>
         </div>
-        <div class="text14 colorGray" style="text-align: center;margin: 0.25px 0rem 0.15rem 0rem;" v-cloak v-if="isComment">
+        <div class="text14 colorGray" style="text-align: center;margin: 0.25px 0rem 0.15rem 0rem;" v-cloak v-if="isComment && items.length==0">
             <div class="iconImg noDataTips"></div>
             <p>还没有人发言呢！快抢沙发！</p>
         </div>
@@ -213,9 +212,8 @@
     <div class="cover" id="tips" style="align-content: center;flex-direction:column;background-color: transparent">
         <div style="padding:10px 5px;background-color: rgba(0,0,0,0.5);border-radius: 4px;"></div>
     </div>
-    <script src="http://cdn.bootcss.com/jquery/3.2.0/jquery.min.js"></script>
-    <script src="https://cdn.bootcss.com/vue/2.4.2/vue.min.js"></script>
-    <script src="https://cdn.bootcss.com/Swiper/3.4.2/js/swiper.min.js"></script>
+    <script src="//cdn.bootcss.com/jquery/3.2.0/jquery.min.js"></script>
+    <script src="//cdn.bootcss.com/vue/2.4.2/vue.min.js"></script>
 </body>
 
 </html>
