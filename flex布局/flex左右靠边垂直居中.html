@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>左右元素贴到左右两边，垂直居中</title>
+    <style>
+        .content{
+            display: flex;
+            width:800px;
+            height:600px;
+            border:1px solid #000000;
+            /*flex-direction: row;*/
+            justify-content: space-between;
+            align-items: center;
+        }
+        .box{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width:300px;
+            height:300px;
+            border:1px solid red;
+        }
+    </style>
+</head>
+<body>
+<div class="content">
+    <div class="box">hasdff</div>
+    <div class="box">hasasdf</div>
+</div>
+</body>
+</html>
