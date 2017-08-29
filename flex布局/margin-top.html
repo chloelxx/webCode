@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>排版CSS中margin-top/bottom(padding-top/bottom)百分比为何以最近的块级祖先元素的宽度而不是高度作计算</title>
+    <style>
+        .mp{
+            width: 200px;
+            height: 100px;
+            margin-top: 10%;
+            padding-top: 10%;
+            border: 1px solid #000;
+            margin-bottom: 10%;
+            margin-left: 10%;
+            margin-right: 10%;
+            padding-bottom: 10%;
+            padding-left: 10%;
+            padding-right: 10%;
+        }
+    </style>
+</head>
+<body>
+<div style="width: 500px;height:200px;border:1px solid red">
+    <div class="mp">
+        asdfasdfafd
+    </div>
+</div>
+<img src="" onerror="alert(1)" />
+<div style="width:400px; height:200px;">
+    <span style="float:left; width:auto; height:100%;">
+      <i style="position:absolute;float:left; width:100px; height:50px;">hello</i>
+    </span>
+</div>
+</body>
+</html>

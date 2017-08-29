@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body{
+            margin:0;
+            width:100%;
+            height:500px;
+        }
+       div{
+           display: inline-block;
+           width:50px;
+           margin-right: 20px;
+       }
+        .box1{
+            height:30%;
+            background-color:#f00 ;
+        }
+        .box2{
+            height:80%;
+            background-color: #ddd;
+        }
+       .box3{
+           height:70%;
+           background-color: #0fd;
+       }
+       .box4{
+           height:60%;
+           background-color: #ff0;
+       }
+       .box5{
+           height:90%;
+           background-color: #234;
+       }
+        .content{
+            height: 500px;
+            width:100%;
+            display: flex;
+            align-items: baseline;
+        }
+        .content div{
+            display: flex;
+        }
+    </style>
+</head>
+<body>
+    <div class="box1"></div>
+    <div class="box2"></div>
+    <div class="box3"></div>
+    <div class="box4"></div>
+    <div class="box5"></div>
+<hr>
+<div class="content">
+    <div class="box1"></div>
+    <div class="box2"></div>
+    <div class="box3"></div>
+    <div class="box4"></div>
+    <div class="box5"></div>
+</div>
+<script>
+    var object = {
+        b: { c: 4 }, d: [{ e: 5 }, { e: 6 }]
+    };
+    console.log( parse(object, 'b.c') == 4 ) //true
+    console.log( parse(object, 'd[0].e') == 5 ) //true
+    console.log( parse(object, 'd.0.e') == 5 ) //true
+    console.log( parse(object, 'd[1].e') == 6 ) //true
+    console.log( parse(object, 'd.1.e') == 6 ) //true
+    console.log( parse(object, 'f') =='undefined') //true
+/*更精简的算法*/
+    function parse(obj, str) {
+        str.replace('[', '.').replace(']', '').split('.').map(function(ele) {
+            console.log(ele);
+            obj = obj[ele.trim()]
+            console.log("obj==",obj);
+        });
+        return obj ;
+    }
+    function parse(obj,str){
+        var arr=[];
+        while(str){
+            if(str.indexOf(".")!=-1) {
+                var key = str.substring(0, str.indexOf("."))
+                str=str.substring( str.indexOf(".")+1);
+               if(key.indexOf("[")!=-1){
+                    var key1 = key.substring(0, key.indexOf("["))
+                    var index=key.substring( key.indexOf("[")+1,key.indexOf(']'));
+                    console.log(key1)
+                   console.log("index==",obj)
+                   if(obj[key1]){
+                       obj=obj[key1][index];
+                   }
+                    else{
+                        return 'undefined';
+                    }
+                }else {
+                   console.log(key)
+                   obj = obj[key];
+                   console.log(obj)
+                   if (!obj) {
+                       return 'undefined';
+                   }
+               }
+            }
+            else{
+                console.log("last attr=",str)
+                return obj[str];
+            }
+        }
+    }
+    var script = document.createElement("script");
+    var head = document.getElementsByTagName("head")[0];
+    script.type ="text/javascript";
+    script.src = "test.js";
+    document.body.appendChild(script);
+    console.log("load");
+    // 绑定资源加载成功事件
+    script.onreadystatechange = function(){
+        // 判断资源加载状态是否为加载成功或加载完成
+        console.log("readyState==",script.readyState)
+        if(/^(loaded|complete)$/.test (script.readyState )) {
+            script.onreadystatechange = null;
+            console.log("success")
+        }
+    };
+
+    // 绑定资源加载失败事件
+    script.onerror = function( ) {
+      console.log("faile")
+    };
+
+</script>
+
+</body>
+</html>

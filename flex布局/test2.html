@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>显示页面上所有元素的class</title>
+    <script src="jquery-3.1.1.js"></script>
+    <style>
+        /**:hover{
+        background-color: yellow;
+        }*/
+    </style>
+</head>
+<body>
+<p>
+    鼠标悬停在某个元素上时，在这个位置出现一个tooltip文字提示。
+    请给出主要实现代码或伟大吗，包括DOM结构，CSS，JS等。
+</p>
+<div class="xx1" style="border:1px solid black">
+    <ul class="xx2">
+        <li>haha</li>
+    </ul>
+    <span class="xx3">hhhhh</span>
+</div>
+<div class="tt1" style="border:1px solid black">
+    <ul class="tt">
+        <li>haha</li>
+    </ul>
+    <span class="xt3">hhhhh</span>
+</div>
+<script>
+    document.querySelectorAll("div");
+    var ele=document.getElementsByTagName("body")[0].childNodes;
+    var classStr="";
+    for(var i=0;i<ele.length;i++){
+        console.log(ele.length);
+        if(ele[i].nodeType==1 && ele[i].nodeName!="SCRIPT"){
+            console.log(ele[i]);
+            (function(i){
+                ele[i].onmouseover=function(e) {
+                    console.log(i)
+                    console.log(ele[i]);
+                    console.log("e==",e);
+                    var classStr="";
+                    if (ele[i] && ele[i].nodeType == 1 &&e.target.classList.length > 0) {
+                        console.log(ele[i].classList);
+                        for (var j = 0; j < e.target.classList.length; j++) {
+                            classStr = classStr + e.target.classList[j].toString();
+                        }
+//                        $(ele[i]).attr("title",classStr);
+                        ele[i].setAttribute("title", classStr)
+                    }
+                }
+            })(i);
+        };
+    }
+</script>
+</body>
+</html>

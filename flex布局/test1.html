@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .container{
+            display: flex;
+            width:100%;
+            flex-direction:row;
+            flex-wrap: nowrap;
+            height:100%;
+        }
+        .main{
+            order: 2;
+            border:1px solid red;
+            flex-grow: 1;
+        }
+        .left{
+           order: 1;
+            width:200px;
+            border:1px solid yellow;
+        }
+        .right{
+            order: 3;
+            border:1px solid yellow;
+            width:300px;
+            /*margin-left: 302px;;*/
+        }
+    </style>
+</head>
+<body>
+<p>
+    针对如下 DOM 结构，编写 CSS
+    ，实现三栏水平布局，其中 left 、 right 分别位于左右两边， left 宽度为 200px ，
+    right 宽度为 300px
+    ， main 处在中间，宽度自适应。要求：允许增加额外 DOM 节点，但不能修改现有节点顺序。
+</p>
+<div class="container">
+    <div class="main">main</div>
+    <div class="left">left</div>
+    <div class="right">right</div>
+</div>
+</body>
+</html>
