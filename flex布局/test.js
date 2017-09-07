@@ -291,17 +291,34 @@ class EventEmitter {
         if(!this.client[eventType]){
             this.client[eventType]=[];
         }
-        this.client[eventType].push(fn);
+        this.client[eventType].push({fn:fn,type:"on"});
     }
     fire(type,param){
+        console.log(this.client[type]);
         if(this.client[type]){
             for(var i=0;i<this.client[type].length;i++){
-                this.client[type][i](param);
+              if(this.client[type][i].type=="once") {
+                  this.client[type][i].fn(param);
+                  this.client[type]=[];
+                  this.client[type].length=0;
+              }else{
+                  this.client[type][i].fn(param);
+              }
             }
         }
     }
-    once(){
-
+    once(type,fn){
+        this.client[type]=[];
+        this.client[type][0]={fn:fn,type:"once"};
+    }
+    off(type){
+        var fns=this.client[type];
+        if(!fns){
+            return false;
+        }
+        fns.length=0;
+        fns=[];
+       console.log("off==",this.client[type][0])
     }
 }
 const event = new EventEmitter()
